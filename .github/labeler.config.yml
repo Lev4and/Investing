@@ -1,0 +1,48 @@
+csharp:
+  - "*/**/*.cs"
+
+design:
+  - "*/**/*.scss"
+  - "*/**/*.css"
+
+css:
+  - "*/**/*.css"
+
+scss:
+  - "*/**/*.scss"
+
+api:
+  - "*/**/api/**/*"
+
+javascript:
+  - "*/**/*.js"
+
+shell:
+  - "*/**/*.sh"
+
+typescript:
+  - "*/**/*.ts"
+
+vue:
+  - "*/**/*.vue"
+
+docker:
+  - "*/**/Dockerfile"
+  - "docker-compose.yml"
+
+production:
+  - "*/**/*.sh"
+  - ".env.dist"
+  - "nginx.conf"
+  - "*/**/Dockerfile"
+  - "docker-compose.yml"
+
+frontend:
+  - "*/**/*.js"
+  - "*/**/*.ts"
+  - "*/**/*.vue"
+  - "*/**/*.css"
+  - "*/**/*.scss"
+
+github:
+  - ".github/**/*"
