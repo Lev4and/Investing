@@ -1,4 +1,5 @@
-﻿using Investing.HttpClients.Common.Extensions;
+﻿using Investing.HttpClients.Common.Builders;
+using Investing.HttpClients.Common.Extensions;
 using Investing.HttpClients.Common.HttpRequestHandlers;
 using Investing.HttpClients.Common.ResponseModels;
 
