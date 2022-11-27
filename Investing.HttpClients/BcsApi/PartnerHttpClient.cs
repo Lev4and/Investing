@@ -1,0 +1,24 @@
+﻿using Investing.HttpClients.BcsApi.RequestModels;
+using Investing.HttpClients.BcsApi.ResponseModels;
+using Investing.HttpClients.Common.ResponseModels;
+
+namespace Investing.HttpClients.BcsApi
+{
+    public class PartnerHttpClient : BcsApiHttpClient
+    {
+        public PartnerHttpClient() : base(BcsApiRoutes.PartnerPath)
+        {
+
+        }
+
+        public async Task<ResponseModel<PartnerQuotations>> GetPartnerQuotationsAsync(int offset, string partnerToken)
+        {
+            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
+            if (string.IsNullOrEmpty(partnerToken)) throw new ArgumentNullException(nameof(partnerToken));
+
+            OverrideHeaders(new Dictionary<string, string>() { { "partner-token", partnerToken } });
+
+            return await GetAsync<PartnerQuotations>(string.Format(BcsApiRoutes.PartnerQuotationsQuery, new GetPartnerQuotationsModel(offset)));
+        }
+    }
+}

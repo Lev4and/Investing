@@ -48,5 +48,28 @@ namespace Investing.HttpClients.Common
 
             return await new JsonHttpRequestHandler<T>().HandleAsync(() => DeleteAsync(uri, cancellationToken));
         }
+
+        public void UseHeaders(Dictionary<string, string> headers)
+        {
+            if (headers == null) throw new ArgumentNullException(nameof(headers));
+
+            DefaultRequestHeaders.Clear();
+
+            foreach (var header in headers)
+            {
+                DefaultRequestHeaders.Add(header.Key, header.Value);
+            }
+        }
+
+        public void OverrideHeaders(Dictionary<string, string> headers)
+        {
+            if (headers == null) throw new ArgumentNullException(nameof(headers));
+
+            foreach (var header in headers)
+            {
+                DefaultRequestHeaders.Remove(header.Key);
+                DefaultRequestHeaders.Add(header.Key, header.Value);
+            }
+        }
     }
 }
