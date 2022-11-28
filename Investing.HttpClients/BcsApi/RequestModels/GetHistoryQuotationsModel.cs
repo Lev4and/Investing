@@ -2,6 +2,8 @@
 {
     public class GetHistoryQuotationsModel
     {
+        public int Resolution { get; }
+
         public long ToUnix { get; }
 
         public long FromUnix { get; }
@@ -9,8 +11,6 @@
         public string SecurCode { get; }
 
         public string ClassCode { get; }
-
-        public QuotationResolution Resolution { get; }
 
         public GetHistoryQuotationsModel(string securCode, string classCode, DateTime from, DateTime to, QuotationResolution resolution)
         {
@@ -23,7 +23,7 @@
             FromUnix = DateTimeOffset.Parse(from.ToString()).ToUnixTimeMilliseconds();
             SecurCode = securCode;
             ClassCode = classCode;
-            Resolution = resolution;
+            Resolution = (int)resolution;
         }
     }
 }

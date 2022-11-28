@@ -1,4 +1,5 @@
-﻿using Investing.HttpClients.BcsApi.RequestModels;
+﻿using Investing.Core.Extensions;
+using Investing.HttpClients.BcsApi.RequestModels;
 using Investing.HttpClients.BcsApi.ResponseModels;
 using Investing.HttpClients.Common.ResponseModels;
 
@@ -15,7 +16,7 @@ namespace Investing.HttpClients.BcsApi
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
 
-            return await GetAsync<HistoryQuotations>(string.Format(BcsApiRoutes.UdfDataFeedHistoryQuotationsQuery, model));
+            return await GetAsync<HistoryQuotations>(BcsApiRoutes.UdfDataFeedHistoryQuotationsQuery.Inject(model));
         }
     }
 }

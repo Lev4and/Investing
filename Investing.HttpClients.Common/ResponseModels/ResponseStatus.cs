@@ -14,7 +14,7 @@ namespace Investing.HttpClients.Common.ResponseModels
         {
             if (string.IsNullOrEmpty(message)) throw new ArgumentNullException(nameof(message));
 
-            Name = nameof(code);
+            Name = code?.ToString();
             Message = message;
             Code = code;
         }
@@ -24,7 +24,7 @@ namespace Investing.HttpClients.Common.ResponseModels
             if (string.IsNullOrEmpty(message)) throw new ArgumentNullException(nameof(message));
             if (response == null) throw new ArgumentNullException(nameof(response));
 
-            Name = nameof(response.StatusCode);
+            Name = response.StatusCode.ToString();
             Message = message;
             Code = response.StatusCode;
         }
@@ -33,8 +33,8 @@ namespace Investing.HttpClients.Common.ResponseModels
         {
             if (response == null) throw new ArgumentNullException(nameof(response));
 
-            Name = nameof(response.StatusCode);
-            Message = nameof(response.StatusCode);
+            Name = response.StatusCode.ToString();
+            Message = response.StatusCode.ToString();
             Code = response.StatusCode;
         }
     }
