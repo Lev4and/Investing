@@ -28,13 +28,17 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
         [JsonProperty("v")]
         public List<double> VolumeValues { get; set; }
 
-        public IEnumerator<Quotation> GetQuotations()
+        public IEnumerable<Quotation> GetQuotations()
         {
+            var result = new List<Quotation>();
+
             for (var i = 0; i < (TimeValues?.Count ?? 0); i++)
             {
-                yield return new Quotation(LowValues.ElementAt(i), HighValues.ElementAt(i), OpenValues.ElementAt(i),
-                    CloseValues.ElementAt(i), VolumeValues.ElementAt(i), TimeValues.ElementAt(i));
+                result.Add(new Quotation(LowValues.ElementAt(i), HighValues.ElementAt(i), OpenValues.ElementAt(i),
+                    CloseValues.ElementAt(i), VolumeValues.ElementAt(i), TimeValues.ElementAt(i)));
             }
+
+            return result;
         }
     }
 }

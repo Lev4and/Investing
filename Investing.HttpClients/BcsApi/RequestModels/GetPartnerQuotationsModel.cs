@@ -6,11 +6,11 @@
 
         public int Offset { get; }
 
+        public int GraphType { get; }
+
+        public int SortField { get; }
+
         public string SortMode { get; }
-
-        public PartnerQuotationsGraphType GraphType { get; }
-
-        public PartnerQuotationsSortField SortField { get; }
 
         public GetPartnerQuotationsModel(int offset)
         {
@@ -18,9 +18,9 @@
 
             Limit = 20;
             Offset = offset - 1;
+            GraphType = (int)PartnerQuotationsGraphType.Default;
+            SortField = (int)PartnerQuotationsSortField.Name;
             SortMode = PartnerQuotationsSortMode.Ascending;
-            GraphType = PartnerQuotationsGraphType.Default;
-            SortField = PartnerQuotationsSortField.Name;
         }
     }
 }
