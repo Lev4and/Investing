@@ -1,6 +1,17 @@
 csharp:
   - "*/**/*.cs"
 
+backend:
+  - "*/**/*.cs"
+
+tests:
+  - "*/**/*Tests*"
+  - "*/**/tests/**/*"
+
+bcs:
+  - "Investing.HttpClients/Bcs/**/*"
+  - "Investing.HttpClients/BcsApi/**/*"
+
 design:
   - "*/**/*.scss"
   - "*/**/*.css"
@@ -12,6 +23,7 @@ scss:
   - "*/**/*.scss"
 
 api:
+  - "*/**/*.cs"
   - "*/**/api/**/*"
 
 javascript:
