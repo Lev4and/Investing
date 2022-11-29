@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients", "In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients.Tests", "Investing.HttpClients.Tests\Investing.HttpClients.Tests.csproj", "{C2095AF6-D16B-42CB-8179-E23C521D8C26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.Core", "Investing.Core\Investing.Core.csproj", "{77B7C56A-B85B-4B4A-9942-15FC18DF7A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.Core", "Investing.Core\Investing.Core.csproj", "{77B7C56A-B85B-4B4A-9942-15FC18DF7A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.ResourceWebApplication", "Investing.ResourceWebApplication\Investing.ResourceWebApplication.csproj", "{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{77B7C56A-B85B-4B4A-9942-15FC18DF7A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B7C56A-B85B-4B4A-9942-15FC18DF7A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B7C56A-B85B-4B4A-9942-15FC18DF7A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
