@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Investing.HttpClients.Common.ResponseModels
+namespace Investing.HttpClients.Core.ResponseModels
 {
     public class ResponseModel<T>
     {

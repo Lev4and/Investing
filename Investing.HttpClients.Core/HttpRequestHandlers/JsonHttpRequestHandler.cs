@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Investing.HttpClients.Common.HttpRequestHandlers
+namespace Investing.HttpClients.Core.HttpRequestHandlers
 {
     public class JsonHttpRequestHandler<T> : BaseHttpRequestHandler<T>
     {

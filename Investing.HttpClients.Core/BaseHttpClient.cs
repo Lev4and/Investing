@@ -1,9 +1,9 @@
-﻿using Investing.HttpClients.Common.Builders;
-using Investing.HttpClients.Common.Extensions;
-using Investing.HttpClients.Common.HttpRequestHandlers;
-using Investing.HttpClients.Common.ResponseModels;
+﻿using Investing.HttpClients.Core.Builders;
+using Investing.HttpClients.Core.Extensions;
+using Investing.HttpClients.Core.HttpRequestHandlers;
+using Investing.HttpClients.Core.ResponseModels;
 
-namespace Investing.HttpClients.Common
+namespace Investing.HttpClients.Core
 {
     public class BaseHttpClient : HttpClient
     {

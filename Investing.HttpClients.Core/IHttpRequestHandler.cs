@@ -1,6 +1,6 @@
-﻿using Investing.HttpClients.Common.ResponseModels;
+﻿using Investing.HttpClients.Core.ResponseModels;
 
-namespace Investing.HttpClients.Common
+namespace Investing.HttpClients.Core
 {
     public interface IHttpRequestHandler<T>
     {

@@ -1,7 +1,7 @@
 ﻿using Investing.Core.Extensions;
 using Investing.HttpClients.BcsApi.RequestModels;
 using Investing.HttpClients.BcsApi.ResponseModels;
-using Investing.HttpClients.Common.ResponseModels;
+using Investing.HttpClients.Core.ResponseModels;
 
 namespace Investing.HttpClients.BcsApi
 {

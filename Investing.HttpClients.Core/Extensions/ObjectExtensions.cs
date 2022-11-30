@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 
-namespace Investing.HttpClients.Common.Extensions
+namespace Investing.HttpClients.Core.Extensions
 {
     public static class ObjectExtensions
     {

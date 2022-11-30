@@ -1,4 +1,4 @@
-﻿namespace Investing.HttpClients.Common
+﻿namespace Investing.HttpClients.Core
 {
     public interface IHttpResponseReader
     {

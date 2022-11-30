@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Investing.HttpClients.Common.Builders
+namespace Investing.HttpClients.Core.Builders
 {
     public class HttpClientHandlerBuilder
     {

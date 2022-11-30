@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients.Common", "Investing.HttpClients.Common\Investing.HttpClients.Common.csproj", "{086A71C0-523D-4006-8D2D-AA1DAD01DDFA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients", "Investing.HttpClients\Investing.HttpClients.csproj", "{0F6DE740-9246-415C-A3D9-018BCF6F8561}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients.Tests", "Investing.HttpClients.Tests\Investing.HttpClients.Tests.csproj", "{C2095AF6-D16B-42CB-8179-E23C521D8C26}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.Core", "Investing.Core\Investing.Core.csproj", "{77B7C56A-B85B-4B4A-9942-15FC18DF7A06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.ResourceWebApplication", "Investing.ResourceWebApplication\Investing.ResourceWebApplication.csproj", "{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.ResourceWebApplication", "Investing.ResourceWebApplication\Investing.ResourceWebApplication.csproj", "{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.EntityFramework.Core", "Investing.EntityFramework.Core\Investing.EntityFramework.Core.csproj", "{3A0FB520-BAB3-4308-976E-85F645EDA3E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.HttpClients.Core", "Investing.HttpClients.Core\Investing.HttpClients.Core.csproj", "{89E65157-BA34-48C6-ACCC-E49B7DB362EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{086A71C0-523D-4006-8D2D-AA1DAD01DDFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{086A71C0-523D-4006-8D2D-AA1DAD01DDFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{086A71C0-523D-4006-8D2D-AA1DAD01DDFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{086A71C0-523D-4006-8D2D-AA1DAD01DDFA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0F6DE740-9246-415C-A3D9-018BCF6F8561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F6DE740-9246-415C-A3D9-018BCF6F8561}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F6DE740-9246-415C-A3D9-018BCF6F8561}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +37,14 @@ Global
 		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A0FB520-BAB3-4308-976E-85F645EDA3E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0FB520-BAB3-4308-976E-85F645EDA3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0FB520-BAB3-4308-976E-85F645EDA3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0FB520-BAB3-4308-976E-85F645EDA3E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
