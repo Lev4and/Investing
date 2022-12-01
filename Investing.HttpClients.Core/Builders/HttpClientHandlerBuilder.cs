@@ -22,7 +22,8 @@ namespace Investing.HttpClients.Core.Builders
 
         public HttpClientHandlerBuilder WithAutomaticDecompression()
         {
-            _httpClientHandler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | DecompressionMethods.Brotli;
+            _httpClientHandler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | 
+                DecompressionMethods.Brotli;
 
             return this;
         }

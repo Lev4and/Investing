@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.Core", "Investing
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.ResourceWebApplication", "Investing.ResourceWebApplication\Investing.ResourceWebApplication.csproj", "{CC8252C0-B1BE-48DB-829C-40F1CDC986FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.EntityFramework.Core", "Investing.EntityFramework.Core\Investing.EntityFramework.Core.csproj", "{3A0FB520-BAB3-4308-976E-85F645EDA3E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.EntityFramework.Core", "Investing.EntityFramework.Core\Investing.EntityFramework.Core.csproj", "{3A0FB520-BAB3-4308-976E-85F645EDA3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.HttpClients.Core", "Investing.HttpClients.Core\Investing.HttpClients.Core.csproj", "{89E65157-BA34-48C6-ACCC-E49B7DB362EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients.Core", "Investing.HttpClients.Core\Investing.HttpClients.Core.csproj", "{89E65157-BA34-48C6-ACCC-E49B7DB362EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.EntityFramework", "Investing.EntityFramework\Investing.EntityFramework.csproj", "{06677AD9-E1DB-4AC0-A06A-744E43A785CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89E65157-BA34-48C6-ACCC-E49B7DB362EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

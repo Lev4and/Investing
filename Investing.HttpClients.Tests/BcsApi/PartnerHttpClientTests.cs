@@ -79,24 +79,5 @@ namespace Investing.HttpClients.Tests.BcsApi
             Assert.Null(result.Result.Partners);
             Assert.Equal(HttpStatusCode.Unauthorized, result.Status.Code);
         }
-
-        [Fact]
-        public async Task GetPartnerQuotationsAsync_SuccessfullyNavigateToAllPages()
-        {
-            var partnerToken = PartnerTokenParser.Parse(await _context.Bcs.Assets.GetScriptJsMarketsJs());
-            var firstPage = await _context.BcsApi.Partner.GetPartnerQuotationsAsync(0, partnerToken);
-
-            if (firstPage.Result != null)
-            {
-                for (var i = 0; i <= firstPage.Result.Total; i+= 20)
-                {
-                    var result = await _context.BcsApi.Partner.GetPartnerQuotationsAsync(i, partnerToken);
-
-                    if (result?.Result?.Partners == null) 
-                        Assert.Fail("Fail by reason: \"result.Result.Partners\" is null or empty");
-                }
-            }
-            else Assert.Fail("Fail by reason: \"firstPage.Result\" is null");
-        }
     }
 }

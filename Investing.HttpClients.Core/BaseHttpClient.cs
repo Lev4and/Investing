@@ -7,14 +7,14 @@ namespace Investing.HttpClients.Core
 {
     public class BaseHttpClient : HttpClient
     {
-        public BaseHttpClient() : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect().WithAutomaticDecompression()
-            .UseCertificateCustomValidation().Build())
+        public BaseHttpClient() : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect()
+            .WithAutomaticDecompression().UseCertificateCustomValidation().Build())
         {
 
         }
 
-        public BaseHttpClient(string uri) : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect().WithAutomaticDecompression()
-            .UseCertificateCustomValidation().Build())
+        public BaseHttpClient(string uri) : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect()
+            .WithAutomaticDecompression().UseCertificateCustomValidation().Build())
         {
             if (string.IsNullOrEmpty(uri)) throw new ArgumentNullException(nameof(uri));
 
@@ -28,18 +28,22 @@ namespace Investing.HttpClients.Core
             return await new JsonHttpRequestHandler<T>().HandleAsync(() => GetAsync(uri, cancellationToken));
         }
 
-        public async Task<ResponseModel<T>> PostAsync<T>(string uri, object content, CancellationToken cancellationToken = default)
+        public async Task<ResponseModel<T>> PostAsync<T>(string uri, object content, 
+            CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-            return await new JsonHttpRequestHandler<T>().HandleAsync(() => PostAsync(uri, content.ToStringContent(), cancellationToken));
+            return await new JsonHttpRequestHandler<T>().HandleAsync(() => PostAsync(uri, content.ToStringContent(), 
+                cancellationToken));
         }
 
-        public async Task<ResponseModel<T>> PutAsync<T>(string uri, object content, CancellationToken cancellationToken = default)
+        public async Task<ResponseModel<T>> PutAsync<T>(string uri, object content, 
+            CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-            return await new JsonHttpRequestHandler<T>().HandleAsync(() => PutAsync(uri, content.ToStringContent(), cancellationToken));
+            return await new JsonHttpRequestHandler<T>().HandleAsync(() => PutAsync(uri, content.ToStringContent(), 
+                cancellationToken));
         }
 
         public async Task<ResponseModel<T>> DeleteAsync<T>(string uri, CancellationToken cancellationToken = default)

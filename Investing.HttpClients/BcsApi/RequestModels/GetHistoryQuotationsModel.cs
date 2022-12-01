@@ -12,7 +12,8 @@
 
         public string ClassCode { get; }
 
-        public GetHistoryQuotationsModel(string securCode, string classCode, DateTime from, DateTime to, QuotationResolution resolution)
+        public GetHistoryQuotationsModel(string securCode, string classCode, DateTime from, DateTime to, 
+            QuotationResolution resolution)
         {
             if (string.IsNullOrEmpty(securCode)) throw new ArgumentNullException(nameof(securCode));
             if (string.IsNullOrEmpty(classCode)) throw new ArgumentNullException(nameof(classCode));

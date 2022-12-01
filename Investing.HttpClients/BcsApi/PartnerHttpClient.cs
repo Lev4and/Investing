@@ -19,7 +19,8 @@ namespace Investing.HttpClients.BcsApi
 
             OverrideHeaders(new Dictionary<string, string>() { { "partner-token", partnerToken } });
 
-            return await GetAsync<PartnerQuotations>(BcsApiRoutes.PartnerQuotationsQuery.Inject(new GetPartnerQuotationsModel(offset)));
+            return await GetAsync<PartnerQuotations>(BcsApiRoutes.PartnerQuotationsQuery
+                .Inject(new GetPartnerQuotationsModel(offset)));
         }
     }
 }
