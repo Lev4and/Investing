@@ -1,4 +1,4 @@
-﻿namespace Investing.HttpClients.Common.HttpResponseReaders
+﻿namespace Investing.HttpClients.Core.HttpResponseReaders
 {
     public class BaseHttpResponseReader : IHttpResponseReader
     {

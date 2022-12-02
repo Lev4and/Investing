@@ -1,7 +1,7 @@
 ﻿using Investing.Core.Extensions;
 using Investing.HttpClients.BcsApi.RequestModels;
 using Investing.HttpClients.BcsApi.ResponseModels;
-using Investing.HttpClients.Common.ResponseModels;
+using Investing.HttpClients.Core.ResponseModels;
 
 namespace Investing.HttpClients.BcsApi
 {
@@ -19,7 +19,8 @@ namespace Investing.HttpClients.BcsApi
 
             OverrideHeaders(new Dictionary<string, string>() { { "partner-token", partnerToken } });
 
-            return await GetAsync<PartnerQuotations>(BcsApiRoutes.PartnerQuotationsQuery.Inject(new GetPartnerQuotationsModel(offset)));
+            return await GetAsync<PartnerQuotations>(BcsApiRoutes.PartnerQuotationsQuery
+                .Inject(new GetPartnerQuotationsModel(offset)));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Investing.HttpClients.Common.HttpRequestHandlers
+﻿namespace Investing.HttpClients.Core.HttpRequestHandlers
 {
     public class StringHttpRequestHandler : BaseHttpRequestHandler<string>
     {

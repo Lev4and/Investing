@@ -61,6 +61,9 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
         [JsonProperty("base_asset")]
         public string BaseAsset { get; set; }
 
+        [JsonProperty("bond_type")]
+        public string? BondType { get; set; }
+
         [JsonProperty("company_logo")]
         public string CompanyLogo { get; set; }
 

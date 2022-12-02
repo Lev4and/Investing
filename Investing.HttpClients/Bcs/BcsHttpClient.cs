@@ -1,4 +1,4 @@
-﻿using Investing.HttpClients.Common;
+﻿using Investing.HttpClients.Core;
 
 namespace Investing.HttpClients.Bcs
 {

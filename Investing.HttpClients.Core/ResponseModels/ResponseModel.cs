@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Investing.HttpClients.Common.ResponseModels
+namespace Investing.HttpClients.Core.ResponseModels
 {
     public class ResponseModel<T>
     {
@@ -16,12 +16,14 @@ namespace Investing.HttpClients.Common.ResponseModels
             Status = status;
         }
 
-        public ResponseModel(T? result, string message, HttpStatusCode? code) : this(result, new ResponseStatus(message, code))
+        public ResponseModel(T? result, string message, HttpStatusCode? code) : this(result, 
+            new ResponseStatus(message, code))
         {
 
         }
 
-        public ResponseModel(T? result, string message, HttpResponseMessage response) : this(result, new ResponseStatus(message, response))
+        public ResponseModel(T? result, string message, HttpResponseMessage response) : this(result, 
+            new ResponseStatus(message, response))
         {
 
         }

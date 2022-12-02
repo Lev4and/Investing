@@ -1,7 +1,7 @@
-﻿using Investing.HttpClients.Common.HttpResponseReaders;
-using Investing.HttpClients.Common.ResponseModels;
+﻿using Investing.HttpClients.Core.HttpResponseReaders;
+using Investing.HttpClients.Core.ResponseModels;
 
-namespace Investing.HttpClients.Common.HttpRequestHandlers
+namespace Investing.HttpClients.Core.HttpRequestHandlers
 {
     public abstract class BaseHttpRequestHandler<T> : IHttpRequestHandler<T>
     {

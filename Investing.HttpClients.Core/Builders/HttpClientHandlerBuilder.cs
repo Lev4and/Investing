@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Investing.HttpClients.Common.Builders
+namespace Investing.HttpClients.Core.Builders
 {
     public class HttpClientHandlerBuilder
     {
@@ -22,7 +22,8 @@ namespace Investing.HttpClients.Common.Builders
 
         public HttpClientHandlerBuilder WithAutomaticDecompression()
         {
-            _httpClientHandler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | DecompressionMethods.Brotli;
+            _httpClientHandler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate | 
+                DecompressionMethods.Brotli;
 
             return this;
         }
