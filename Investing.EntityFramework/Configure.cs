@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Investing.EntityFramework
@@ -6,7 +7,13 @@ namespace Investing.EntityFramework
     {
         public static void AddEntityFramework(this IServiceCollection services)
         {
-            services.AddDbContext<InvestingDbContext>();
+            services.AddDbContext<InvestingDbContext>((options) =>
+            {
+                options
+                    .UseNpgsql("Server=lev4and.ru;Database=Investing;User Id=postgres;Password=sa;" +
+                        "Integrated Security=true;Pooling=true;")
+                    .UseSnakeCaseNamingConvention();
+            });
         }
     }
 }
