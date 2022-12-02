@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Investing.EntityFramework.Core\Investing.EntityFramework.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

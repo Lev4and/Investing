@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Investing.EntityFramework\Investing.EntityFramework.csproj" />
     <ProjectReference Include="..\Investing.HttpClients\Investing.HttpClients.csproj" />
   </ItemGroup>
 

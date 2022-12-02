@@ -7,6 +7,6 @@ namespace Investing.Core.Repository
     {
         ValueTask<long> CountAsync(IGridSpecification<TEntity> spec);
 
-        Task<List<TEntity>> FindAsync(IGridSpecification<TEntity> spec);
+        Task<IEnumerable<TEntity>> FindAsync(IGridSpecification<TEntity> spec);
     }
 }

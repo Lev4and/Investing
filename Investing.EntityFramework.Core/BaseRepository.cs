@@ -26,7 +26,7 @@ namespace Investing.EntityFramework.Core
             return await GetQuery(_context.Set<TEntity>(), specification).FirstOrDefaultAsync();
         }
 
-        public async Task<List<TEntity>> FindAsync(ISpecification<TEntity> specification)
+        public async Task<IEnumerable<TEntity>> FindAsync(ISpecification<TEntity> specification)
         {
             return await GetQuery(_context.Set<TEntity>(), specification).ToListAsync();
         }
@@ -38,7 +38,7 @@ namespace Investing.EntityFramework.Core
             return await ValueTask.FromResult(GetQuery(_context.Set<TEntity>(), specification).LongCount());
         }
 
-        public async Task<List<TEntity>> FindAsync(IGridSpecification<TEntity> specification)
+        public async Task<IEnumerable<TEntity>> FindAsync(IGridSpecification<TEntity> specification)
         {
             return await GetQuery(_context.Set<TEntity>(), specification).ToListAsync();
         }
