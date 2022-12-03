@@ -11,6 +11,7 @@ cp .env.dist .env
 export $(egrep -v '^#' .env | xargs -0)
 mkdir pgadmin-data
 mkdir postgres-data
+mkdir postgres-test-data
 mkdir portainer-data
 chown -R 472:472 pgadmin-data
 sudo chown -R 5050:5050 pgadmin-data

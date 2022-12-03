@@ -11,12 +11,25 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - ${POSTGRES_DB_PORT}:5432
+
+  investing-postgres-test:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_TEST_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./postgres-test-data:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_DB_TEST_PORT}:5432
 
   investing-pgadmin:
     image: dpage/pgadmin4:latest
     depends_on:
       - investing-postgres
+      - investing-postgres-test
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
