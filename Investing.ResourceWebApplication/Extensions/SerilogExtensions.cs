@@ -10,7 +10,7 @@ namespace Investing.ResourceWebApplication.Extensions
                 configuration.WriteTo.Console().ReadFrom.Configuration(context.Configuration));
         }
 
-        public static void UseSerilogRequestLogging(this IApplicationBuilder builder)
+        public static void UseSerilogLogging(this IApplicationBuilder builder)
         {
             builder.UseSerilogRequestLogging();
         }
