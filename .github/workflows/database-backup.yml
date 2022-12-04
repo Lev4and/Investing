@@ -23,10 +23,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             whoami
-            cd /var/var/projects/Investing/shell
-            ls
-            bash exportEnv.sh
-            echo $POSTGRES_DB_DATA_DIR
-            echo $POSTGRES_DB_NAME
+            cd /var/var/projects/Investing
             bash postgresDump.sh
             bash postgresTestDump.sh
