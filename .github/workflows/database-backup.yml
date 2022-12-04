@@ -1,0 +1,30 @@
+name: Database Backup
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+
+jobs:
+  backup:
+    name: Database Backup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to server, build and run docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            whoami
+            which sh
+            cd /var/var/projects/Investing
+            rm .env
+            cp .env.dist .env
+            export $(egrep -v '^#' .env | xargs -0)
+            bash postgresDump.sh
+            bash postgresTestDump.sh
