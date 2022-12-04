@@ -25,5 +25,6 @@ jobs:
             whoami
             cd /var/var/projects/Investing/shell
             ls
+            bash exportEnv.sh
             bash postgresDump.sh
             bash postgresTestDump.sh
