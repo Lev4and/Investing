@@ -26,5 +26,7 @@ jobs:
             cd /var/var/projects/Investing/shell
             ls
             bash exportEnv.sh
+            echo $POSTGRES_DB_DATA_DIR
+            echo $POSTGRES_DB_NAME
             bash postgresDump.sh
             bash postgresTestDump.sh
