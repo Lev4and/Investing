@@ -23,6 +23,10 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             whoami
+            which sh
             cd /var/var/projects/Investing
+            rm .env
+            cp .env.dist .env
+            export $(egrep -v '^#' .env | xargs -0)
             bash postgresDump.sh
             bash postgresTestDump.sh
