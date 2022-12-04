@@ -24,5 +24,6 @@ jobs:
           script: |
             whoami
             cd /var/var/projects/Investing/shell
+            ls
             bash postgresDump.sh
             bash postgresTestDump.sh
