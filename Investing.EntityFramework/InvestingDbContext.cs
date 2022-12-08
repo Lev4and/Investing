@@ -30,18 +30,6 @@ namespace Investing.EntityFramework
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                    .UseNpgsql("Server=lev4and.ru;Database=Investing;User Id=postgres;Password=sa;" +
-                        "Integrated Security=true;Pooling=true;", builder => 
-                            builder.MigrationsAssembly("Investing.ResourceWebApplication"))
-                    .UseSnakeCaseNamingConvention();
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
