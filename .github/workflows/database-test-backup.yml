@@ -2,7 +2,7 @@ name: Database Backup
 
 on:
   workflow_run:
-    workflows: [ Docker Release Image Deploy ]
+    workflows: [ Docker Image Test Deploy ]
     types: [ completed ]
 
 jobs:
@@ -24,4 +24,4 @@ jobs:
             rm .env
             cp .env.dist .env
             export $(egrep -v '^#' .env | xargs -0)
-            bash postgresDump.sh
+            bash postgresTestDump.sh
