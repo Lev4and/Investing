@@ -10,7 +10,11 @@ namespace Investing.EntityFramework
             services.AddDbContext<InvestingDbContext>((options) =>
             {
                 options
-                    .UseNpgsql("Server=lev4and.ru;Database=Investing;User Id=postgres;Password=sa;" +
+                    .UseNpgsql($"Host={Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_DB_SERVER")};" +
+                        $"Port={Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_DB_SERVER_PORT")};" +
+                        $"Database={Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_DB_NAME")};" +
+                        $"Username={Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_DB_USER")};" +
+                        $"Password={Environment.GetEnvironmentVariable("ASPNETCORE_POSTGRES_DB_PASSWORD")};" +
                         "Integrated Security=true;Pooling=true;")
                     .UseSnakeCaseNamingConvention();
             });

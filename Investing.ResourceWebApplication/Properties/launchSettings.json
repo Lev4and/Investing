@@ -5,7 +5,13 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_POSTGRES_DB_SERVER": "lev4and.ru",
+        "ASPNETCORE_POSTGRES_DB_SERVER_PORT": "5433",
+        "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
+        "ASPNETCORE_POSTGRES_DB_USER": "postgres",
+        "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
+        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5188"
@@ -15,7 +21,13 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_POSTGRES_DB_SERVER": "lev4and.ru",
+        "ASPNETCORE_POSTGRES_DB_SERVER_PORT": "5433",
+        "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
+        "ASPNETCORE_POSTGRES_DB_USER": "postgres",
+        "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
+        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7056;http://localhost:5188"
@@ -25,7 +37,13 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_POSTGRES_DB_SERVER": "lev4and.ru",
+        "ASPNETCORE_POSTGRES_DB_SERVER_PORT": "5433",
+        "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
+        "ASPNETCORE_POSTGRES_DB_USER": "postgres",
+        "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
+        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq"
       }
     },
     "Docker": {
@@ -33,7 +51,15 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "publishAllPorts": true,
-      "useSSL": true
+      "useSSL": true,
+      "environmentVariables": {
+        "ASPNETCORE_POSTGRES_DB_SERVER": "localhost",
+        "ASPNETCORE_POSTGRES_DB_SERVER_PORT": "5433",
+        "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
+        "ASPNETCORE_POSTGRES_DB_USER": "postgres",
+        "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
+        "ASPNETCORE_SEQ_SERVER": "http://localhost/resorce/test/seq"
+      }
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",
