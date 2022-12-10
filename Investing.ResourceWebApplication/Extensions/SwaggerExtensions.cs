@@ -5,11 +5,6 @@ namespace Investing.ResourceWebApplication.Extensions
 {
     public static class SwaggerExtensions
     {
-        private static readonly string[] _serverUrls = new string[2]
-        {
-            "https://localhost:44313", "http://lev4and.ru/resource"
-        };
-
         public static void AddSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
@@ -21,7 +16,9 @@ namespace Investing.ResourceWebApplication.Extensions
 
         private static void AddServers(this SwaggerGenOptions options)
         {
-            foreach (var serverUrl in _serverUrls)
+            var serverUrl = Environment.GetEnvironmentVariable("ASPNETCORE_SWAGGER_SERVER");
+
+            if (!string.IsNullOrEmpty(serverUrl) )
             {
                 options.AddServer(new OpenApiServer() { Url = serverUrl });
             }
