@@ -1,0 +1,27 @@
+name: Docker Service Test Update
+
+on:
+  workflow_run:
+    workflows: [ Database Test Backup ]
+    types: [ completed ]
+
+jobs:
+  vue-js-app-update:
+    name: update service vue-js-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Docker service
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/eff462f0-ce54-4b81-9ebc-328e5ef055b1
+          method: POST
+  
+  resource-web-app-update:
+    name: update service resource-web-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Docker service
+        uses: satak/webrequest-action@master
+        with:
+          url: http://lev4and.ru/portainer/api/webhooks/fdd64c8b-fe71-4df0-aed3-4e812f25860b
+          method: POST
