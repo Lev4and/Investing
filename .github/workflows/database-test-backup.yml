@@ -2,7 +2,7 @@ name: Database Test Backup
 
 on:
   workflow_run:
-    workflows: [ Docker Image Test Deploy ]
+    workflows: [ Docker Image Test Build/Push ]
     types: [ completed ]
 
 jobs:
