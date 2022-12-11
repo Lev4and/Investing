@@ -7,10 +7,10 @@ namespace Investing.HttpClients.Core.Builders
     {
         private readonly HttpClientHandler _httpClientHandler = new HttpClientHandler();
 
-        public HttpClientHandlerBuilder WithSslProtocols()
+        public HttpClientHandlerBuilder UseSslProtocols()
         {
-            _httpClientHandler.SslProtocols = SslProtocols.Ssl3 | SslProtocols.Tls | SslProtocols.Tls11 |
-                SslProtocols.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.SystemDefault | SecurityProtocolType.Tls |
+                SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
             return this;
         }

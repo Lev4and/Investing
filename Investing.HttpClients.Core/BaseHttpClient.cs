@@ -8,13 +8,13 @@ namespace Investing.HttpClients.Core
     public class BaseHttpClient : HttpClient
     {
         public BaseHttpClient() : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect()
-            .WithAutomaticDecompression().UseCertificateCustomValidation().WithSslProtocols().Build())
+            .WithAutomaticDecompression().UseCertificateCustomValidation().UseSslProtocols().Build())
         {
 
         }
 
         public BaseHttpClient(string uri) : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect()
-            .WithAutomaticDecompression().UseCertificateCustomValidation().WithSslProtocols().Build())
+            .WithAutomaticDecompression().UseCertificateCustomValidation().UseSslProtocols().Build())
         {
             if (string.IsNullOrEmpty(uri)) throw new ArgumentNullException(nameof(uri));
 
