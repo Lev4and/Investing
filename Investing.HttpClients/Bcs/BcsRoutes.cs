@@ -2,7 +2,7 @@
 {
     public class BcsRoutes
     {
-        public const string Protocol = "https";
+        public const string Protocol = "http";
 
         public const string Domain = "bcs.ru";
 
