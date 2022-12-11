@@ -1,6 +1,26 @@
 version: '3.4'
 
 services:
+  investing-resource-web-application:
+    image: ghcr.io/lev4and/investing/resource-web-app:latest
+    ports:
+      - "5002:80"
+    environment:
+      ASPNETCORE_POSTGRES_DB_SERVER: ${POSTGRES_DB_SERVER}
+      ASPNETCORE_POSTGRES_DB_SERVER_PORT: ${POSTGRES_DB_PORT}
+      ASPNETCORE_POSTGRES_DB_NAME: ${POSTGRES_DB_NAME}
+      ASPNETCORE_POSTGRES_DB_USER: ${POSTGRES_USER}
+      ASPNETCORE_POSTGRES_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      ASPNETCORE_SEQ_SERVER: ${BACKEND_RESOURCE_SEQ_SERVER}
+      ASPNETCORE_SWAGGER_SERVER: ${BACKEND_RESOURCE_SWAGGER_SERVER}
+
+  investing-resource-web-application-seq:
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5344:80"
+
   investing-resource-web-application-test:
     image: ghcr.io/lev4and/investing/resource-web-app:test-latest
     ports:
@@ -20,6 +40,11 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "5345:80"
+
+  investing-vue-js-app:
+    image: ghcr.io/lev4and/investing/vue-js-app:latest
+    ports:
+      - "5004:8080"
 
   investing-vue-js-app-test:
     image: ghcr.io/lev4and/investing/vue-js-app:test-latest
