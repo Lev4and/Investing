@@ -14,7 +14,7 @@ services:
       ASPNETCORE_SEQ_SERVER: ${BACKEND_RESOURCE_TEST_SEQ_SERVER}
       ASPNETCORE_SWAGGER_SERVER: ${BACKEND_RESOURCE_TEST_SWAGGER_SERVER}
 
-  investing-resource-web-application-seq:
+  investing-resource-web-application-test-seq:
     image: datalust/seq:latest
     environment:
       - ACCEPT_EULA=Y

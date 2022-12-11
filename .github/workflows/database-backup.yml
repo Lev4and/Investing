@@ -2,7 +2,7 @@ name: Database Backup
 
 on:
   workflow_run:
-    workflows: [ Docker Release Image Deploy ]
+    workflows: [ Docker Release Image Build/Push ]
     types: [ completed ]
 
 jobs:

@@ -1,4 +1,4 @@
-name: Docker Image Test Deploy
+name: Docker Image Test Build/Push
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   vue-js-app-build:
-    name: vue-js-app image build, pull and push
+    name: vue-js-app image build and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: investing-vue-js-app
@@ -25,7 +25,7 @@ jobs:
         run: docker push $DOCKER_IMAGE
 
   resource-web-app-build:
-    name: resource-web-app image build, pull and push
+    name: resource-web-app image build and push
     runs-on: ubuntu-latest
     env:
       PROJECT_SRC_DIR: Investing.ResourceWebApplication
