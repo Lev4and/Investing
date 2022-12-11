@@ -8,7 +8,7 @@ namespace Investing.HttpClients.Core.Builders
 
         public HttpClientHandlerBuilder UseCertificateCustomValidation()
         {
-            _httpClientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+            _httpClientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
 
             return this;
         }
