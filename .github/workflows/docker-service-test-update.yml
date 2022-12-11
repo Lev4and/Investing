@@ -13,7 +13,7 @@ jobs:
       - name: Update Docker service
         uses: satak/webrequest-action@master
         with:
-          url: http://lev4and.ru/portainer/api/webhooks/eff462f0-ce54-4b81-9ebc-328e5ef055b1
+          url: http://lev4and.ru/portainer/api/webhooks/62f1fad6-5ade-49c3-8091-a557913e0ef9
           method: POST
   
   resource-web-app-update:
@@ -23,5 +23,5 @@ jobs:
       - name: Update Docker service
         uses: satak/webrequest-action@master
         with:
-          url: http://lev4and.ru/portainer/api/webhooks/fdd64c8b-fe71-4df0-aed3-4e812f25860b
+          url: http://lev4and.ru/portainer/api/webhooks/77ca25e5-0bb7-4727-ac6d-410bd6cbb611
           method: POST
