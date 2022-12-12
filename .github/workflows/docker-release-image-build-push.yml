@@ -1,8 +1,12 @@
 name: Docker Release Image Build/Push
 
 on:
-  release:
-    types: [ created ]
+  create:
+    tags:
+      - '**'
+  push:
+    tags:
+      - '**'
 
 jobs:
   vue-js-app-build:
