@@ -1,4 +1,4 @@
-name: Docker Service Test Update
+name: Docker Service Update
 
 on:
   workflow_run:
