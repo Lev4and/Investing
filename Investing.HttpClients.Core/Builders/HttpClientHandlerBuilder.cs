@@ -1,10 +1,19 @@
 ﻿using System.Net;
+using SslProtocols = System.Security.Authentication.SslProtocols;
 
 namespace Investing.HttpClients.Core.Builders
 {
     public class HttpClientHandlerBuilder
     {
         private readonly HttpClientHandler _httpClientHandler = new HttpClientHandler();
+
+        public HttpClientHandlerBuilder UseSslProtocols()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.SystemDefault | SecurityProtocolType.Tls |
+                SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
+            return this;
+        }
 
         public HttpClientHandlerBuilder UseCertificateCustomValidation()
         {
