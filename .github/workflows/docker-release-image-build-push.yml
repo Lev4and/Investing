@@ -25,8 +25,14 @@ jobs:
       - name: Build and pull docker image
         run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE:${GITHUB_REF#refs/*/} $PROJECT_SRC_DIR
 
+      - name: Build and pull docker latest image
+        run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE:latest $PROJECT_SRC_DIR
+
       - name: Push docker image
         run: docker push $DOCKER_IMAGE:${GITHUB_REF#refs/*/}
+
+      - name: Push docker latest image
+        run: docker push $DOCKER_IMAGE:latest
 
   resource-web-app-build:
     name: resource-web-app image build and push
@@ -44,5 +50,11 @@ jobs:
       - name: Build and pull docker image
         run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE:${GITHUB_REF#refs/*/} .
 
+      - name: Build and pull docker latest image
+        run: docker build -f $PROJECT_SRC_DIR/Dockerfile --pull -t $DOCKER_IMAGE:latest .
+
       - name: Push docker image
         run: docker push $DOCKER_IMAGE:${GITHUB_REF#refs/*/}
+
+      - name: Push docker latest image
+        run: docker push $DOCKER_IMAGE:latest
