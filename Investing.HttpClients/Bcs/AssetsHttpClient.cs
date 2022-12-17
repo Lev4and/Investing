@@ -2,7 +2,7 @@
 
 namespace Investing.HttpClients.Bcs
 {
-    public class AssetsHttpClient : BcsHttpClient
+    public class AssetsHttpClient : BcsHttpClient, IAssetsHttpClient
     {
         public AssetsHttpClient() : base(BcsRoutes.AssetsPath)
         {

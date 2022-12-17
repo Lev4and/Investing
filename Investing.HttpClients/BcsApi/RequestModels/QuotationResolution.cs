@@ -1,6 +1,6 @@
 ﻿namespace Investing.HttpClients.BcsApi.RequestModels
 {
-    public enum QuotationResolution
+    public enum QuotationResolution : uint
     {
         Minute = 1, 
         FiveMinutes = 5, 

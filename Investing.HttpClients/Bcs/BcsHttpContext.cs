@@ -1,7 +1,7 @@
 ﻿namespace Investing.HttpClients.Bcs
 {
-    public class BcsHttpContext
+    public class BcsHttpContext : IBcsHttpContext
     {
-        public AssetsHttpClient Assets => new AssetsHttpClient();
+        public IAssetsHttpClient Assets => new AssetsHttpClient();
     }
 }

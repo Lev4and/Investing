@@ -5,7 +5,7 @@ using Investing.HttpClients.Core.ResponseModels;
 
 namespace Investing.HttpClients.BcsApi
 {
-    public class PartnerHttpClient : BcsApiHttpClient
+    public class PartnerHttpClient : BcsApiHttpClient, IPartnerHttpClient
     {
         public PartnerHttpClient() : base(BcsApiRoutes.PartnerPath)
         {
