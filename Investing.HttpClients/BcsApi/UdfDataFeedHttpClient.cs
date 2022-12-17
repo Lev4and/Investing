@@ -5,7 +5,7 @@ using Investing.HttpClients.Core.ResponseModels;
 
 namespace Investing.HttpClients.BcsApi
 {
-    public class UdfDataFeedHttpClient : BcsApiHttpClient
+    public class UdfDataFeedHttpClient : BcsApiHttpClient, IUdfDataFeedHttpClient
     {
         public UdfDataFeedHttpClient() : base(BcsApiRoutes.UdfDataFeedPath)
         {

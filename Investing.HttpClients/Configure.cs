@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Investing.HttpClients.Facades;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Investing.HttpClients
 {
@@ -6,7 +7,8 @@ namespace Investing.HttpClients
     {
         public static void AddHttpClients(this IServiceCollection services)
         {
-            services.AddSingleton<HttpContext>();
+            services.AddSingleton<IHttpContext, HttpContext>();
+            services.AddSingleton<IBcsFacade, BcsFacade>();
         }
     }
 }
