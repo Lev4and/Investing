@@ -1,7 +1,8 @@
-using Investing.Core.Domain.Entities;
+using Investing.EntityFramework.Entities;
 using Investing.EntityFramework.Core;
 using Investing.EntityFramework.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Investing.EntityFramework
 {

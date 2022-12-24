@@ -1,4 +1,6 @@
-namespace Investing.Core.Domain.Entities
+using Investing.Core.Domain;
+
+namespace Investing.EntityFramework.Entities
 {
     public class Sector : EntityBase, IAggregateRoot
     {
