@@ -1,7 +1,11 @@
 ﻿using Investing.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investing.EntityFramework.Entities
 {
+    [Index(nameof(Issuer))]
+    [Index(nameof(ClassCode))]
+    [Index(nameof(SecurCode))]
     public class Product : EntityBase, IAggregateRoot
     {
         public Guid AssetId { get; set; }

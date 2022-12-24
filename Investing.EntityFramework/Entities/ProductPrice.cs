@@ -1,7 +1,9 @@
 ﻿using Investing.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investing.EntityFramework.Entities
 {
+    [Index(nameof(ProductId))]
     public class ProductPrice : EntityBase, IAggregateRoot
     {
         public Guid ProductId { get; set; }

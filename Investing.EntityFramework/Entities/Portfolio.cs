@@ -1,7 +1,9 @@
 using Investing.Core.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investing.EntityFramework.Entities
 {
+    [Index(nameof(Title))]
     public class Portfolio : EntityBase, IAggregateRoot
     {
         public string Title { get; set; }
