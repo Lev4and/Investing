@@ -7,9 +7,9 @@ namespace Investing.Core.Repository
     {
         Task<TEntity?> FindByIdAsync(Guid id);
 
-        Task<TEntity?> FindOneAsync(ISpecification<TEntity> spec);
+        Task<TEntity?> FindOneAsync(ISpecification<TEntity> specification);
 
-        Task<IEnumerable<TEntity>> FindAsync(ISpecification<TEntity> spec);
+        Task<IEnumerable<TEntity>> FindAsync(ISpecification<TEntity> specification);
 
         Task<TEntity> AddAsync(TEntity entity);
 
