@@ -5,7 +5,7 @@ namespace Investing.ResourceWebApplication
 {
     public static class EntityFrameworkExtensions
     {
-        public static void UseDatabaseMigration(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseDatabaseMigration(this IApplicationBuilder builder)
         {
             using (var scope = builder.ApplicationServices.CreateScope())
             {
@@ -14,6 +14,8 @@ namespace Investing.ResourceWebApplication
                     context.Database.Migrate();
                 }
             }
+
+            return builder;
         }
     }
 }

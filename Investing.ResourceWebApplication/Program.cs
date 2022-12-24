@@ -1,3 +1,4 @@
+using AutoWrapper;
 using Investing.EntityFramework;
 using Investing.HttpClients;
 using Investing.ResourceWebApplication;
@@ -20,6 +21,7 @@ app.UseSerilogLogging();
 app.UseDatabaseMigration();
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseApiResponseAndExceptionWrapper();
 app.UseAuthorization();
 app.UseCorsPolicy();
 app.MapRoutes();
