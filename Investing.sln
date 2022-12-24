@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.EntityFramework.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.HttpClients.Core", "Investing.HttpClients.Core\Investing.HttpClients.Core.csproj", "{89E65157-BA34-48C6-ACCC-E49B7DB362EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.EntityFramework", "Investing.EntityFramework\Investing.EntityFramework.csproj", "{06677AD9-E1DB-4AC0-A06A-744E43A785CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investing.EntityFramework", "Investing.EntityFramework\Investing.EntityFramework.csproj", "{06677AD9-E1DB-4AC0-A06A-744E43A785CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investing.EntityFramework.Factories", "Investing.EntityFramework.Factories\Investing.EntityFramework.Factories.csproj", "{C514AE94-5DC9-4467-9D12-BB6A20BD7ABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06677AD9-E1DB-4AC0-A06A-744E43A785CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C514AE94-5DC9-4467-9D12-BB6A20BD7ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C514AE94-5DC9-4467-9D12-BB6A20BD7ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C514AE94-5DC9-4467-9D12-BB6A20BD7ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C514AE94-5DC9-4467-9D12-BB6A20BD7ABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

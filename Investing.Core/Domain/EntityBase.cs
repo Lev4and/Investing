@@ -2,6 +2,19 @@
 {
     public abstract class EntityBase
     {
-        public Guid Id { get; protected init; } = Guid.NewGuid();
+        private Guid _id;
+
+        public Guid Id
+        {
+            get { return _id; }
+            set 
+            { 
+                _id = value;
+
+                OnIdChanged?.Invoke(_id);
+            }
+        }
+
+        public event Action<Guid> OnIdChanged;
     }
 }
