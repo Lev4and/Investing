@@ -4,9 +4,6 @@ on:
   create:
     tags:
       - '**'
-  push:
-    tags:
-      - '**'
 
 jobs:
   vue-js-app-build:
