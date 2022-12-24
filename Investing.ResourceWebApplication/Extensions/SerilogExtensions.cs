@@ -11,9 +11,9 @@ namespace Investing.ResourceWebApplication.Extensions
                 .WriteTo.Seq(Environment.GetEnvironmentVariable("ASPNETCORE_SEQ_SERVER")));
         }
 
-        public static void UseSerilogLogging(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseSerilogLogging(this IApplicationBuilder builder)
         {
-            builder.UseSerilogRequestLogging();
+            return builder.UseSerilogRequestLogging();
         }
     }
 }

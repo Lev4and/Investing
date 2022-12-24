@@ -18,9 +18,9 @@
             });
         }
 
-        public static void UseCorsPolicy(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseCorsPolicy(this IApplicationBuilder builder)
         {
-            builder.UseCors(CorsPolicyName);
+            return builder.UseCors(CorsPolicyName);
         }
     }
 }
