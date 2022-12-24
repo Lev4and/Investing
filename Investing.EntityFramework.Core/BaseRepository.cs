@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Investing.EntityFramework.Core
 {
     public class BaseRepository<TDbContext, TEntity> : IRepository<TEntity>, IGridRepository<TEntity> 
-        where TEntity : EntityBase, IAggregateRoot
+        where TEntity : EntityBase, IAggregateRoot, IUniqueSpecification<TEntity>
         where TDbContext : DbContext
     {
         private readonly TDbContext _context;
@@ -19,6 +19,11 @@ namespace Investing.EntityFramework.Core
         public async Task<TEntity?> FindByIdAsync(Guid id)
         {
             return await _context.Set<TEntity>().SingleOrDefaultAsync(item => item.Id == id);
+        }
+
+        public async Task<TEntity?> FindUniqueByExpressionAsync(IUniqueSpecification<TEntity> specification)
+        {
+            return await _context.Set<TEntity>().SingleOrDefaultAsync(specification.Unique);
         }
 
         public async Task<TEntity?> FindOneAsync(ISpecification<TEntity> specification)
@@ -48,6 +53,11 @@ namespace Investing.EntityFramework.Core
             await _context.Set<TEntity>().SingleInsertAsync(entity);
 
             return entity;
+        }
+
+        public async Task<TEntity> TryImportAsync(TEntity entity)
+        {
+            return (await FindUniqueByExpressionAsync(entity)) ?? await AddAsync(entity);
         }
 
         public async Task RemoveAsync(TEntity entity)

@@ -2,7 +2,7 @@
 
 namespace Investing.Core.Specification
 {
-    public interface ISpecification<T> : IRootSpecification
+    public interface ISpecification<TEntity> : IRootSpecification
     {
         int Take { get; }
 
@@ -10,18 +10,18 @@ namespace Investing.Core.Specification
 
         bool IsPagingEnabled { get; }
 
-        Expression<Func<T, bool>> Criteria { get; }
+        Expression<Func<TEntity, bool>> Criteria { get; }
 
-        Expression<Func<T, object>> OrderBy { get; }
+        Expression<Func<TEntity, object>> OrderBy { get; }
 
-        Expression<Func<T, object>> OrderByDescending { get; }
+        Expression<Func<TEntity, object>> OrderByDescending { get; }
 
-        Expression<Func<T, object>> GroupBy { get; }
+        Expression<Func<TEntity, object>> GroupBy { get; }
 
         List<string> IncludeStrings { get; }
 
-        List<Expression<Func<T, object>>> Includes { get; }
+        List<Expression<Func<TEntity, object>>> Includes { get; }
 
-        bool IsSatisfiedBy(T obj);
+        bool IsSatisfiedBy(TEntity obj);
     }
 }

@@ -1,12 +1,14 @@
 ﻿using Investing.Core.Domain;
+using Investing.Core.Specification;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(Issuer))]
     [Index(nameof(ClassCode))]
     [Index(nameof(SecurCode))]
-    public class Product : EntityBase, IAggregateRoot
+    public class Product : EntityBase, IAggregateRoot, IUniqueSpecification<Product>
     {
         public Guid AssetId { get; set; }
 
@@ -27,6 +29,9 @@ namespace Investing.EntityFramework.Entities
         public string SecurCode { get; set; }
 
         public decimal? Capitalization { get; set; }
+
+        public Expression<Func<Product, bool>> Unique => (item) => item.Issuer == Issuer && item.SecurCode == SecurCode &&
+            item.ClassCode == ClassCode;
 
         public virtual Asset? Asset { get; set; }
 

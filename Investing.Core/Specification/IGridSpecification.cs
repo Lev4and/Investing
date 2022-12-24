@@ -2,7 +2,7 @@
 
 namespace Investing.Core.Specification
 {
-    public interface IGridSpecification<T> : IRootSpecification
+    public interface IGridSpecification<TEntity> : IRootSpecification
     {
         bool IsPagingEnabled { get; set; }
 
@@ -10,16 +10,16 @@ namespace Investing.Core.Specification
 
         int Skip { get; }
 
-        Expression<Func<T, object>> GroupBy { get; }
+        Expression<Func<TEntity, object>> GroupBy { get; }
 
-        Expression<Func<T, object>> OrderBy { get; }
+        Expression<Func<TEntity, object>> OrderBy { get; }
 
-        Expression<Func<T, object>> OrderByDescending { get; }
+        Expression<Func<TEntity, object>> OrderByDescending { get; }
 
         List<string> IncludeStrings { get; }
 
-        List<Expression<Func<T, bool>>> Criterias { get; }
+        List<Expression<Func<TEntity, bool>>> Criterias { get; }
 
-        List<Expression<Func<T, object>>> Includes { get; }
+        List<Expression<Func<TEntity, object>>> Includes { get; }
     }
 }
