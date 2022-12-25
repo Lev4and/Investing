@@ -1,7 +1,8 @@
-﻿using Investing.EntityFramework.Entities;
+﻿using Investing.EntityFramework.Abstracts;
+using Investing.EntityFramework.Entities;
 using Investing.HttpClients.BcsApi.ResponseModels;
 
-namespace Investing.EntityFramework.Factories
+namespace Investing.EntityFramework.Infrastructure.Factories
 {
     public class ProductFactory : IEntityFrameworkFactory<Partner, Product>
     {
