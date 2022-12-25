@@ -79,10 +79,10 @@ namespace Investing.EntityFramework.Visitors
 
             if (product.Portfolio != null)
             {
-                product.PortfolioId = (await ImportAsync(product)).Id;
+                product.PortfolioId = (await ImportAsync(product.Portfolio)).Id;
             }
 
-            var result = await _repository.TryImportAsync(product);
+            product.Id = (await _repository.TryImportAsync(product)).Id;
 
             if (product.Logo != null)
             {
@@ -91,7 +91,7 @@ namespace Investing.EntityFramework.Visitors
                 await ImportAsync(product.Logo);
             }
 
-            return result;
+            return product;
         }
 
         public async Task<ProductLogo> ImportAsync(ProductLogo productLogo)

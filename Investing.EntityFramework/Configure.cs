@@ -11,8 +11,8 @@ namespace Investing.EntityFramework
     {
         public static void AddEntityFramework(this IServiceCollection services)
         {
-            services.AddSingleton<IImporterVisitor, ImporterVisitor>();
-            services.AddSingleton<IRepository, BaseRepository>();
+            services.AddTransient<IImporterVisitor, ImporterVisitor>();
+            services.AddTransient<IRepository, InvestingRepository>();
             services.AddDbContext<InvestingDbContext>((options) =>
             {
                 options

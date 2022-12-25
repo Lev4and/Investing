@@ -16,11 +16,11 @@ namespace Investing.EntityFramework.Entities
 
         public Guid SectorId { get; set; }
 
-        public Guid BondTypeId { get; set; }
-
         public Guid CurrencyId { get; set; }
 
         public Guid ExchangeId { get; set; }
+
+        public Guid? BondTypeId { get; set; }
 
         public Guid PortfolioId { get; set; }
 

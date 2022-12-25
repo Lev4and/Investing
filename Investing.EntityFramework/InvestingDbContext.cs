@@ -39,7 +39,7 @@ namespace Investing.EntityFramework
                 entity => entity.AssetId);
 
             builder.Entity<BondType>().OneToMany(entity => entity.Products, entity => entity.BondType, 
-                entity => entity.BondTypeId);
+                entity => entity.BondTypeId, false);
 
             builder.Entity<Currency>().OneToMany(entity => entity.Products, entity => entity.Currency,
                 entity => entity.CurrencyId);

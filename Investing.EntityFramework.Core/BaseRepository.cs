@@ -9,7 +9,7 @@ namespace Investing.EntityFramework.Core
     {
         private readonly DbContext _context;
 
-        protected BaseRepository(DbContext context)
+        public BaseRepository(DbContext context)
         {
             _context = context;
         }
