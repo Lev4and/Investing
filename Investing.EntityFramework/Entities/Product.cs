@@ -1,5 +1,7 @@
 ﻿using Investing.Core.Domain;
 using Investing.Core.Specification;
+using Investing.EntityFramework.Abstracts;
+using Investing.EntityFramework.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -8,7 +10,7 @@ namespace Investing.EntityFramework.Entities
     [Index(nameof(Issuer))]
     [Index(nameof(ClassCode))]
     [Index(nameof(SecurCode))]
-    public class Product : EntityBase, IAggregateRoot, IUniqueSpecification<Product>
+    public class Product : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<Product>
     {
         public Guid AssetId { get; set; }
 
@@ -48,5 +50,10 @@ namespace Investing.EntityFramework.Entities
         public virtual Portfolio? Portfolio { get; set; }
 
         public virtual ICollection<ProductPrice>? Prices { get; set; }
+
+        public override async Task ImportAsync(IImporterVisitor visitor)
+        {
+            await visitor.ImportAsync(this);
+        }
     }
 }

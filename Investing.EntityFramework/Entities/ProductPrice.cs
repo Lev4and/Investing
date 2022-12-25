@@ -1,5 +1,7 @@
 ﻿using Investing.Core.Domain;
 using Investing.Core.Specification;
+using Investing.EntityFramework.Abstracts;
+using Investing.EntityFramework.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -7,7 +9,7 @@ namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(ProductId))]
     [Index(nameof(ClosedAt))]
-    public class ProductPrice : EntityBase, IAggregateRoot, IUniqueSpecification<ProductPrice>
+    public class ProductPrice : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<ProductPrice>
     {
         public Guid ProductId { get; set; }
 
@@ -27,5 +29,10 @@ namespace Investing.EntityFramework.Entities
             item.ClosedAt == ClosedAt;
 
         public virtual Product? Product { get; set; }
+
+        public override async Task ImportAsync(IImporterVisitor visitor)
+        {
+            await visitor.ImportAsync(this);
+        }
     }
 }
