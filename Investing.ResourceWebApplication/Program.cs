@@ -1,14 +1,14 @@
 using AutoWrapper;
 using Investing.EntityFramework;
 using Investing.HttpClients;
+using Investing.Infrastructure;
 using Investing.ResourceWebApplication;
 using Investing.ResourceWebApplication.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
-builder.Services.AddHttpClients();
-builder.Services.AddEntityFramework();
+builder.Services.AddInfrastructure();
 builder.Services.AddApiControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();

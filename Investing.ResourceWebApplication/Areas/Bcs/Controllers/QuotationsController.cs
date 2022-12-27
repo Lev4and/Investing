@@ -1,6 +1,7 @@
 ﻿using Investing.HttpClients.BcsApi.RequestModels;
-using Investing.HttpClients.Facades;
+using Investing.Infrastructure.Queries;
 using Investing.ResourceWebApplication.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -13,11 +14,11 @@ namespace Investing.ResourceWebApplication.Areas.Bcs.Controllers
     [EnableCors(CorsExtensions.CorsPolicyName)]
     public class QuotationsController : ControllerBase
     {
-        private readonly IBcsFacade _bcs;
+        private readonly IMediator _mediator;
 
-        public QuotationsController(IBcsFacade bcs)
+        public QuotationsController(IMediator mediator)
         {
-            _bcs = bcs;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -27,13 +28,15 @@ namespace Investing.ResourceWebApplication.Areas.Bcs.Controllers
             [FromQuery(Name = "to")][Required] DateTime to, 
             [FromQuery(Name = "resolution")][Required] QuotationResolution resolution)
         {
-            if (string.IsNullOrEmpty(securCode)) return BadRequest();
-            if (string.IsNullOrEmpty(classCode)) return BadRequest();
-            if (from > to) return BadRequest();
-            if (to < from) return BadRequest();
+            if (string.IsNullOrEmpty(securCode)) return BadRequest($"The {nameof(securCode)} should be not " +
+                $"null or empty.");
+            if (string.IsNullOrEmpty(classCode)) return BadRequest($"The {nameof(classCode)} should be not " +
+                $"null or empty.");
+            if (from > to) return BadRequest($"The {nameof(from)} should be less than {nameof(to)}");
+            if (to < from) return BadRequest($"The {nameof(to)} should be greater than {nameof(from)}");
 
-            return Ok(await _bcs.GetHistoryQuotationsAsync(new GetHistoryQuotationsModel(securCode, classCode, from,
-                to, resolution)));
+            return Ok(await _mediator.Send(new GetBcsQuotations(new GetHistoryQuotationsModel(securCode, classCode, 
+                from, to, resolution))));
         }
     }
 }
