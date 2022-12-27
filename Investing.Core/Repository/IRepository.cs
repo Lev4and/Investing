@@ -3,16 +3,27 @@ using Investing.Core.Specification;
 
 namespace Investing.Core.Repository
 {
-    public interface IRepository<TEntity> where TEntity : EntityBase, IAggregateRoot
+    public interface IRepository
     {
-        Task<TEntity?> FindByIdAsync(Guid id);
+        Task<TEntity?> FindByIdAsync<TEntity>(Guid id) where TEntity : EntityBase, IAggregateRoot, 
+            IUniqueSpecification<TEntity>;
 
-        Task<TEntity?> FindOneAsync(ISpecification<TEntity> spec);
+        Task<TEntity?> FindUniqueByExpressionAsync<TEntity>(IUniqueSpecification<TEntity> specification) where TEntity : 
+            EntityBase, IAggregateRoot, IUniqueSpecification<TEntity>;
 
-        Task<IEnumerable<TEntity>> FindAsync(ISpecification<TEntity> spec);
+        Task<TEntity?> FindOneAsync<TEntity>(ISpecification<TEntity> specification) where TEntity : EntityBase, 
+            IAggregateRoot, IUniqueSpecification<TEntity>;
 
-        Task<TEntity> AddAsync(TEntity entity);
+        Task<IEnumerable<TEntity>> FindAsync<TEntity>(ISpecification<TEntity> specification) where TEntity : EntityBase,
+            IAggregateRoot, IUniqueSpecification<TEntity>;
 
-        Task RemoveAsync(TEntity entity);
+        Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
+            IUniqueSpecification<TEntity>;
+
+        Task<TEntity> TryImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
+            IUniqueSpecification<TEntity>;
+
+        Task RemoveAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot, 
+            IUniqueSpecification<TEntity>;
     }
 }

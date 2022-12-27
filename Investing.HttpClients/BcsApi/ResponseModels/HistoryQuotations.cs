@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 
 namespace Investing.HttpClients.BcsApi.ResponseModels
 {
-    public class HistoryQuotations
+    [JsonObject]
+    public class HistoryQuotations : IEnumerable<Quotation>
     {
         [JsonProperty("scale")]
         public int Scale { get; set; }
@@ -14,19 +16,28 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
         public List<long> TimeValues { get; set; }
 
         [JsonProperty("l")]
-        public List<double> LowValues { get; set; }
+        public List<decimal> LowValues { get; set; }
 
         [JsonProperty("o")]
-        public List<double> OpenValues { get; set; }
+        public List<decimal> OpenValues { get; set; }
 
         [JsonProperty("h")]
-        public List<double> HighValues { get; set; }
+        public List<decimal> HighValues { get; set; }
 
         [JsonProperty("c")]
-        public List<double> CloseValues { get; set; }
+        public List<decimal> CloseValues { get; set; }
 
         [JsonProperty("v")]
-        public List<double> VolumeValues { get; set; }
+        public List<decimal> VolumeValues { get; set; }
+
+        public IEnumerator<Quotation> GetEnumerator()
+        {
+            for (var i = 0; i < (TimeValues?.Count ?? 0); i++)
+            {
+                yield return new Quotation(LowValues.ElementAt(i), HighValues.ElementAt(i), OpenValues.ElementAt(i),
+                    CloseValues.ElementAt(i), VolumeValues.ElementAt(i), TimeValues.ElementAt(i));
+            }
+        }
 
         public IEnumerable<Quotation> GetQuotations()
         {
@@ -39,6 +50,11 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
             }
 
             return result;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            yield return GetEnumerator();
         }
     }
 }

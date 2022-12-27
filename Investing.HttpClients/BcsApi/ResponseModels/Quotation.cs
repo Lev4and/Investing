@@ -2,26 +2,26 @@
 {
     public class Quotation
     {
-        public double Low { get; }
+        public decimal Low { get; }
 
-        public double High { get; }
+        public decimal High { get; }
 
-        public double Open { get; }
+        public decimal Open { get; }
 
-        public double Close { get; }
+        public decimal Close { get; }
 
-        public double Volume { get; }
+        public decimal Volume { get; }
 
         public DateTime Time { get; }
 
-        public Quotation(double low, double high, double open, double close, double volume, long timeUnix)
+        public Quotation(decimal low, decimal high, decimal open, decimal close, decimal volume, long timeUnix)
         {
             Low = low; 
             High = high; 
             Open = open;
             Close = close;
             Volume = volume;
-            Time = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(timeUnix);
+            Time = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timeUnix);
         }
     }
 }

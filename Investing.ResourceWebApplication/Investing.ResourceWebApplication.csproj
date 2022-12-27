@@ -46,8 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Investing.EntityFramework\Investing.EntityFramework.csproj" />
-    <ProjectReference Include="..\Investing.HttpClients\Investing.HttpClients.csproj" />
+    <ProjectReference Include="..\Investing.Infrastructure\Investing.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

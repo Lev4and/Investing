@@ -1,3 +1,7 @@
+using Investing.Core.Repository;
+using Investing.EntityFramework.Abstracts;
+using Investing.EntityFramework.Core;
+using Investing.EntityFramework.Visitors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,6 +11,8 @@ namespace Investing.EntityFramework
     {
         public static void AddEntityFramework(this IServiceCollection services)
         {
+            services.AddTransient<IImporterVisitor, ImporterVisitor>();
+            services.AddTransient<IRepository, InvestingRepository>();
             services.AddDbContext<InvestingDbContext>((options) =>
             {
                 options

@@ -1,16 +1,26 @@
-﻿namespace Investing.Core.Domain.Entities
+﻿using Investing.Core.Domain;
+using Investing.Core.Specification;
+using Investing.EntityFramework.Abstracts;
+using Investing.EntityFramework.Domain;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+
+namespace Investing.EntityFramework.Entities
 {
-    public class Product : EntityBase, IAggregateRoot
+    [Index(nameof(Issuer))]
+    [Index(nameof(ClassCode))]
+    [Index(nameof(SecurCode))]
+    public class Product : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<Product>
     {
         public Guid AssetId { get; set; }
 
         public Guid SectorId { get; set; }
 
-        public Guid BondTypeId { get; set; }
-
         public Guid CurrencyId { get; set; }
 
         public Guid ExchangeId { get; set; }
+
+        public Guid? BondTypeId { get; set; }
 
         public Guid PortfolioId { get; set; }
 
@@ -21,6 +31,9 @@
         public string SecurCode { get; set; }
 
         public decimal? Capitalization { get; set; }
+
+        public Expression<Func<Product, bool>> Unique => (item) => item.Issuer == Issuer && item.SecurCode == SecurCode &&
+            item.ClassCode == ClassCode;
 
         public virtual Asset? Asset { get; set; }
 
@@ -37,5 +50,10 @@
         public virtual Portfolio? Portfolio { get; set; }
 
         public virtual ICollection<ProductPrice>? Prices { get; set; }
+
+        public override async Task ImportAsync(IImporterVisitor visitor)
+        {
+            await visitor.ImportAsync(this);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Investing.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Investing.EntityFramework.Migrations
 {
     [DbContext(typeof(InvestingDbContext))]
-    partial class InvestingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221225051821_AddedIndexes")]
+    partial class AddedIndexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,7 +141,7 @@ namespace Investing.EntityFramework.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("asset_id");
 
-                    b.Property<Guid?>("BondTypeId")
+                    b.Property<Guid>("BondTypeId")
                         .HasColumnType("uuid")
                         .HasColumnName("bond_type_id");
 
@@ -559,6 +562,8 @@ namespace Investing.EntityFramework.Migrations
                     b.HasOne("Investing.EntityFramework.Entities.BondType", "BondType")
                         .WithMany("Products")
                         .HasForeignKey("BondTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("fk_products_bond_types_bond_type_id");
 
                     b.HasOne("Investing.EntityFramework.Entities.Currency", "Currency")
