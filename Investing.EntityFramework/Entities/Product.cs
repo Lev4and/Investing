@@ -10,7 +10,7 @@ namespace Investing.EntityFramework.Entities
     [Index(nameof(Issuer))]
     [Index(nameof(ClassCode))]
     [Index(nameof(SecurCode))]
-    public class Product : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<Product>
+    public class Product : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<Product>
     {
         public Guid AssetId { get; set; }
 
@@ -32,7 +32,7 @@ namespace Investing.EntityFramework.Entities
 
         public decimal? Capitalization { get; set; }
 
-        public Expression<Func<Product, bool>> Unique => (item) => item.Issuer == Issuer && item.SecurCode == SecurCode &&
+        public Expression<Func<Product, bool>> IsEqual => (item) => item.Issuer == Issuer && item.SecurCode == SecurCode &&
             item.ClassCode == ClassCode;
 
         public virtual Asset? Asset { get; set; }

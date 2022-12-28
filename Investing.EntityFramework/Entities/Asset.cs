@@ -8,11 +8,11 @@ using System.Linq.Expressions;
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(Title))]
-    public class Asset : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<Asset>
+    public class Asset : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<Asset>
     {
         public string Title { get; set; }
 
-        public Expression<Func<Asset, bool>> Unique => (item) => item.Title == Title;
+        public Expression<Func<Asset, bool>> IsEqual => (item) => item.Title == Title;
 
         public virtual ICollection<Product>? Products { get; set; }
 

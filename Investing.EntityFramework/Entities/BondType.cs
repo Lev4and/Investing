@@ -8,11 +8,11 @@ using System.Linq.Expressions;
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(Title))]
-    public class BondType : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<BondType>
+    public class BondType : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<BondType>
     {
         public string Title { get; set; }
 
-        public Expression<Func<BondType, bool>> Unique => (item) => item.Title == Title;
+        public Expression<Func<BondType, bool>> IsEqual => (item) => item.Title == Title;
 
         public virtual ICollection<Product>? Products { get; set; }
 

@@ -15,25 +15,25 @@ namespace Investing.EntityFramework.Core
         }
 
         public async Task<TEntity?> FindByIdAsync<TEntity>(Guid id) where TEntity : EntityBase, IAggregateRoot,
-            IUniqueSpecification<TEntity>
+            IEqualSpecification<TEntity>
         {
             return await _context.Set<TEntity>().SingleOrDefaultAsync(item => item.Id == id);
         }
 
-        public async Task<TEntity?> FindUniqueByExpressionAsync<TEntity>(IUniqueSpecification<TEntity> specification) 
-            where TEntity : EntityBase, IAggregateRoot, IUniqueSpecification<TEntity>
+        public async Task<TEntity?> FindUniqueByExpressionAsync<TEntity>(IEqualSpecification<TEntity> specification) 
+            where TEntity : EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
-            return await _context.Set<TEntity>().SingleOrDefaultAsync(specification.Unique);
+            return await _context.Set<TEntity>().SingleOrDefaultAsync(specification.IsEqual);
         }
 
         public async Task<TEntity?> FindOneAsync<TEntity>(ISpecification<TEntity> specification) where TEntity :
-            EntityBase, IAggregateRoot, IUniqueSpecification<TEntity>
+            EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
             return await GetQuery(_context.Set<TEntity>(), specification).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<TEntity>> FindAsync<TEntity>(ISpecification<TEntity> specification) where TEntity : 
-            EntityBase, IAggregateRoot, IUniqueSpecification<TEntity>
+            EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
             return await GetQuery(_context.Set<TEntity>(), specification).ToListAsync();
         }
@@ -53,7 +53,7 @@ namespace Investing.EntityFramework.Core
         }
 
         public async Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,
-            IUniqueSpecification<TEntity>
+            IEqualSpecification<TEntity>
         {
             await _context.Set<TEntity>().SingleInsertAsync(entity);
 
@@ -61,13 +61,13 @@ namespace Investing.EntityFramework.Core
         }
 
         public async Task<TEntity> TryImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,
-            IUniqueSpecification<TEntity>
+            IEqualSpecification<TEntity>
         {
             return (await FindUniqueByExpressionAsync(entity)) ?? await AddAsync(entity);
         }
 
         public async Task RemoveAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,
-            IUniqueSpecification<TEntity>
+            IEqualSpecification<TEntity>
         {
             await _context.Set<TEntity>().SingleDeleteAsync(entity);
         }
