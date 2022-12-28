@@ -8,6 +8,10 @@ using System.Linq.Expressions;
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(ProductId))]
+    [Index(nameof(Open))]
+    [Index(nameof(High))]
+    [Index(nameof(Low))]
+    [Index(nameof(Volume))]
     [Index(nameof(ClosedAt))]
     public class ProductPrice : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<ProductPrice>
     {

@@ -10,6 +10,7 @@ namespace Investing.EntityFramework.Entities
     [Index(nameof(Issuer))]
     [Index(nameof(ClassCode))]
     [Index(nameof(SecurCode))]
+    [Index(nameof(Capitalization))]
     public class Product : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<Product>
     {
         public Guid AssetId { get; set; }
