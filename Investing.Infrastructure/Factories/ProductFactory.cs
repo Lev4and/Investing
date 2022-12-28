@@ -2,7 +2,7 @@
 using Investing.EntityFramework.Entities;
 using Investing.HttpClients.BcsApi.ResponseModels;
 
-namespace Investing.EntityFramework.Infrastructure.Factories
+namespace Investing.Infrastructure.Factories
 {
     public class ProductFactory : IEntityFrameworkFactory<Partner, Product>
     {
@@ -18,7 +18,7 @@ namespace Investing.EntityFramework.Infrastructure.Factories
                 Capitalization = (decimal?)input.Capitalization,
                 Asset = new Asset { Title = input.BaseAsset },
                 Currency = new Currency { Title = input.Currency },
-                Sector = new Entities.Sector { Title = input.Sector.Name },
+                Sector = new EntityFramework.Entities.Sector { Title = input.Sector.Name },
                 Logo = !string.IsNullOrEmpty(input.CompanyLogo) ? new ProductLogo { Value = input.CompanyLogo } : null,
                 BondType = !string.IsNullOrEmpty(input.BondType) ? new BondType { Title = input.BondType } : null,
                 Exchange = new Exchange { Title = input.Exchange },

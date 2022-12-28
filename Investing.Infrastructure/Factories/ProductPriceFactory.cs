@@ -2,7 +2,7 @@
 using Investing.EntityFramework.Entities;
 using Investing.HttpClients.BcsApi.ResponseModels;
 
-namespace Investing.EntityFramework.Infrastructure.Factories
+namespace Investing.Infrastructure.Factories
 {
     public class ProductPriceFactory : IEntityFrameworkFactory<Quotation, ProductPrice>
     {

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Investing.Core.Domain.Cqrs;
 using Investing.EntityFramework.Abstracts;
-using Investing.EntityFramework.Infrastructure.Factories;
+using Investing.Infrastructure.Factories;
 using Investing.HttpClients.BcsApi.ResponseModels;
 using MediatR;
 
