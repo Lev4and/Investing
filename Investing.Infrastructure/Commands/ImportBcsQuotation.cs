@@ -44,13 +44,13 @@ namespace Investing.Infrastructure.Commands
             {
                 var product = new ProductFactory().Create(request.Partner);
 
-                await _importer.ImportAsync(product);
+                await _importer.Visit(product);
 
                 var factory = new ProductPriceFactory(product.Id);
 
                 foreach(var quotation in request.HistoryQuotations)
                 {
-                    await _importer.ImportAsync(factory.Create(quotation));
+                    await _importer.Visit(factory.Create(quotation));
                 }
 
                 return new ResultModel<Guid>(product.Id);

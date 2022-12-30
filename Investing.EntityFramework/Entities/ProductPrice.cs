@@ -34,9 +34,9 @@ namespace Investing.EntityFramework.Entities
 
         public virtual Product? Product { get; set; }
 
-        public override async Task ImportAsync(IImporterVisitor visitor)
+        public override async Task Accept(IImporterVisitor visitor)
         {
-            await visitor.ImportAsync(this);
+            await visitor.Visit(this);
         }
     }
 }

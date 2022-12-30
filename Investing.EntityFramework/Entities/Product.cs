@@ -33,9 +33,6 @@ namespace Investing.EntityFramework.Entities
 
         public decimal? Capitalization { get; set; }
 
-        public Expression<Func<Product, bool>> IsEqual => (item) => item.Issuer == Issuer && item.SecurCode == SecurCode &&
-            item.ClassCode == ClassCode;
-
         public virtual Asset? Asset { get; set; }
 
         public virtual Sector? Sector { get; set; }
@@ -50,11 +47,14 @@ namespace Investing.EntityFramework.Entities
 
         public virtual Portfolio? Portfolio { get; set; }
 
+        public Expression<Func<Product, bool>> IsEqual => (item) => item.Issuer == Issuer &&
+            item.SecurCode == SecurCode && item.ClassCode == ClassCode;
+
         public virtual ICollection<ProductPrice>? Prices { get; set; }
 
-        public override async Task ImportAsync(IImporterVisitor visitor)
+        public override async Task Accept(IImporterVisitor visitor)
         {
-            await visitor.ImportAsync(this);
+            await visitor.Visit(this);
         }
     }
 }

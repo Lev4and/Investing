@@ -17,25 +17,25 @@ namespace Investing.EntityFramework.Core
         public async Task<TEntity?> FindByIdAsync<TEntity>(Guid id) where TEntity : EntityBase, IAggregateRoot,
             IEqualSpecification<TEntity>
         {
-            return await _context.Set<TEntity>().SingleOrDefaultAsync(item => item.Id == id);
+            return await _context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(item => item.Id == id);
         }
 
         public async Task<TEntity?> FindUniqueByExpressionAsync<TEntity>(IEqualSpecification<TEntity> specification) 
             where TEntity : EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
-            return await _context.Set<TEntity>().SingleOrDefaultAsync(specification.IsEqual);
+            return await _context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(specification.IsEqual);
         }
 
         public async Task<TEntity?> FindOneAsync<TEntity>(ISpecification<TEntity> specification) where TEntity :
             EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
-            return await GetQuery(_context.Set<TEntity>(), specification).FirstOrDefaultAsync();
+            return await GetQuery(_context.Set<TEntity>(), specification).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<TEntity>> FindAsync<TEntity>(ISpecification<TEntity> specification) where TEntity : 
             EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
-            return await GetQuery(_context.Set<TEntity>(), specification).ToListAsync();
+            return await GetQuery(_context.Set<TEntity>(), specification).AsNoTracking().ToListAsync();
         }
 
         public async ValueTask<long> CountAsync<TEntity>(IGridSpecification<TEntity> specification) where TEntity : 
@@ -49,7 +49,7 @@ namespace Investing.EntityFramework.Core
         public async Task<IEnumerable<TEntity>> FindAsync<TEntity>(IGridSpecification<TEntity> specification) where TEntity : 
             EntityBase, IAggregateRoot
         {
-            return await GetQuery(_context.Set<TEntity>(), specification).ToListAsync();
+            return await GetQuery(_context.Set<TEntity>(), specification).AsNoTracking().ToListAsync();
         }
 
         public async Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,

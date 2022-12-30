@@ -5,6 +5,6 @@ namespace Investing.EntityFramework.Domain
 {
     public abstract class EntityFrameworkEntityBase : EntityBase
     {
-        public abstract Task ImportAsync(IImporterVisitor visitor);
+        public abstract Task Accept(IImporterVisitor visitor);
     }
 }

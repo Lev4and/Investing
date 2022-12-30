@@ -13,106 +13,122 @@ namespace Investing.EntityFramework.Visitors
             _repository = repository;
         }
 
-        public async Task<Asset> ImportAsync(Asset asset)
+        public async Task<Asset> Visit(Asset asset)
         {
             if (asset == null) throw new ArgumentNullException(nameof(asset));
 
-            return await _repository.TryImportAsync(asset);
+            asset = await _repository.TryImportAsync(asset);
+
+            return asset;
         }
 
-        public async Task<BondType> ImportAsync(BondType bondType)
+        public async Task<BondType> Visit(BondType bondType)
         {
             if (bondType == null) throw new ArgumentNullException(nameof(bondType));
 
-            return await _repository.TryImportAsync(bondType);
+            bondType = await _repository.TryImportAsync(bondType);
+
+            return bondType;
         }
 
-        public async Task<Currency> ImportAsync(Currency currency)
+        public async Task<Currency> Visit(Currency currency)
         {
             if (currency == null) throw new ArgumentNullException(nameof(currency));
 
-            return await _repository.TryImportAsync(currency);
+            currency = await _repository.TryImportAsync(currency);
+
+            return currency;
         }
 
-        public async Task<Exchange> ImportAsync(Exchange exchange)
+        public async Task<Exchange> Visit(Exchange exchange)
         {
             if (exchange == null) throw new ArgumentNullException(nameof(exchange));
 
-            return await _repository.TryImportAsync(exchange);
+            exchange = await _repository.TryImportAsync(exchange);
+
+            return exchange;
         }
 
-        public async Task<Portfolio> ImportAsync(Portfolio portfolio)
+        public async Task<Portfolio> Visit(Portfolio portfolio)
         {
             if (portfolio == null) throw new ArgumentNullException(nameof(portfolio));
 
-            return await _repository.TryImportAsync(portfolio);
+            portfolio = await _repository.TryImportAsync(portfolio);
+
+            return portfolio;
         }
 
-        public async Task<Product> ImportAsync(Product product)
+        public async Task<Product> Visit(Product product)
         {
             if (product == null) throw new ArgumentNullException(nameof(product));
 
             if (product.Asset != null)
             {
-                product.AssetId = (await ImportAsync(product.Asset)).Id;
+                product.AssetId = (await Visit(product.Asset)).Id;
             }
 
             if (product.Sector != null)
             {
-                product.SectorId = (await ImportAsync(product.Sector)).Id;
+                product.SectorId = (await Visit(product.Sector)).Id;
             }
 
             if (product.BondType != null)
             {
-                product.BondTypeId = (await ImportAsync(product.BondType)).Id;
+                product.BondTypeId = (await Visit(product.BondType)).Id;
             }
 
             if (product.Currency != null)
             {
-                product.CurrencyId = (await ImportAsync(product.Currency)).Id;
+                product.CurrencyId = (await Visit(product.Currency)).Id;
             }
 
             if (product.Exchange != null)
             {
-                product.ExchangeId = (await ImportAsync(product.Exchange)).Id;
+                product.ExchangeId = (await Visit(product.Exchange)).Id;
             }
 
             if (product.Portfolio != null)
             {
-                product.PortfolioId = (await ImportAsync(product.Portfolio)).Id;
+                product.PortfolioId = (await Visit(product.Portfolio)).Id;
             }
 
-            product.Id = (await _repository.TryImportAsync(product)).Id;
+            await _repository.TryImportAsync(product);
 
             if (product.Logo != null)
             {
                 product.Logo.ProductId = product.Id;
 
-                await ImportAsync(product.Logo);
+                await Visit(product.Logo);
             }
 
             return product;
         }
 
-        public async Task<ProductLogo> ImportAsync(ProductLogo productLogo)
+        public async Task<ProductLogo> Visit(ProductLogo productLogo)
         {
             if (productLogo == null) throw new ArgumentNullException(nameof(productLogo));
 
-            return await _repository.TryImportAsync(productLogo);
+            productLogo = await _repository.TryImportAsync(productLogo);
+
+            return productLogo;
         }
 
-        public async Task<ProductPrice> ImportAsync(ProductPrice productPrice)
+        public async Task<ProductPrice> Visit(ProductPrice productPrice)
         {
             if (productPrice == null) throw new ArgumentNullException(nameof(productPrice));
 
-            return await _repository.TryImportAsync(productPrice);
+            productPrice = await _repository.TryImportAsync(productPrice);
+
+            return productPrice;
         }
 
-        public async Task<Sector> ImportAsync(Sector sector)
+        public async Task<Sector> Visit(Sector sector)
         {
             if (sector == null) throw new ArgumentNullException(nameof(sector));
 
-            return await _repository.TryImportAsync(sector);
+            sector = await _repository.TryImportAsync(sector);
+
+            return sector;
         }
     }
 }

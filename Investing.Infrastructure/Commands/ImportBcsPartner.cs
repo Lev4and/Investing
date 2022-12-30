@@ -39,7 +39,7 @@ namespace Investing.Infrastructure.Commands
             {
                 var product = new ProductFactory().Create(request.Partner);
 
-                await product.ImportAsync(_importer);
+                await product.Accept(_importer);
 
                 return new ResultModel<Guid>(product.Id);
             }
