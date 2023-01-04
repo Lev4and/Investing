@@ -20,7 +20,7 @@ namespace Investing.EntityFramework.Core
             return await _context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(item => item.Id == id);
         }
 
-        public async Task<TEntity?> FindUniqueByExpressionAsync<TEntity>(IEqualSpecification<TEntity> specification) 
+        public async Task<TEntity?> FindByExpressionAsync<TEntity>(IEqualSpecification<TEntity> specification) 
             where TEntity : EntityBase, IAggregateRoot, IEqualSpecification<TEntity>
         {
             return await _context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(specification.IsEqual);
@@ -63,7 +63,7 @@ namespace Investing.EntityFramework.Core
         public async Task<TEntity> TryImportAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,
             IEqualSpecification<TEntity>
         {
-            return (await FindUniqueByExpressionAsync(entity)) ?? await AddAsync(entity);
+            return (await FindByExpressionAsync(entity)) ?? await AddAsync(entity);
         }
 
         public async Task RemoveAsync<TEntity>(TEntity entity) where TEntity : EntityBase, IAggregateRoot,

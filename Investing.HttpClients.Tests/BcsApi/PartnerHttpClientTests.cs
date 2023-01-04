@@ -48,7 +48,7 @@ namespace Investing.HttpClients.Tests.BcsApi
             Assert.NotNull(result.Result);
             Assert.NotNull(result.Result.Partners);
             Assert.Empty(result.Result.Partners);
-            Assert.Equal(HttpStatusCode.OK, result.Status.Code);
+            Assert.Equal(HttpStatusCode.OK, result.Code);
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace Investing.HttpClients.Tests.BcsApi
             Assert.NotNull(result.Result);
             Assert.NotNull(result.Result.Partners);
             Assert.NotEmpty(result.Result.Partners);
-            Assert.Equal(HttpStatusCode.OK, result.Status.Code);
+            Assert.Equal(HttpStatusCode.OK, result.Code);
         }
 
         [Fact]
@@ -77,7 +77,7 @@ namespace Investing.HttpClients.Tests.BcsApi
             Assert.NotNull(result);
             Assert.NotNull(result.Result);
             Assert.Null(result.Result.Partners);
-            Assert.Equal(HttpStatusCode.Unauthorized, result.Status.Code);
+            Assert.Equal(HttpStatusCode.Unauthorized, result.Code);
         }
     }
 }

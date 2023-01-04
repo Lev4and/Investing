@@ -36,7 +36,7 @@ namespace Investing.Infrastructure.Queries
             }
         }
 
-        internal class Handler : IRequestHandler<GetBcsQuotations, ResultModel<HistoryQuotations?>>
+        internal class Handler : IRequestHandler<GetBcsQuotations, HistoryQuotations?>
         {
             private readonly IBcsFacade _bcs;
 
@@ -45,12 +45,12 @@ namespace Investing.Infrastructure.Queries
                 _bcs = bcs;
             }
 
-            public async Task<ResultModel<HistoryQuotations?>> Handle(GetBcsQuotations request, 
+            public async Task<HistoryQuotations?> Handle(GetBcsQuotations request, 
                 CancellationToken cancellationToken)
             {
                 var response = await _bcs.GetHistoryQuotationsAsync(request.Model);
 
-                return new ResultModel<HistoryQuotations?>(response);
+                return response;
             }
         }
     }

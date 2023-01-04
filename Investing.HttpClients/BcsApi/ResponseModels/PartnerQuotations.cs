@@ -14,6 +14,6 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
         public int? LastValue { get; set; }
 
         [JsonProperty("data")]
-        public List<Partner>? Partners { get; set; }
+        public List<PartnerBase>? Partners { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Investing.HttpClients.Tests.BcsApi
             Assert.NotNull(result);
             Assert.NotNull(result.Result);
             Assert.Null(result.Result.OpenValues);
-            Assert.Equal(HttpStatusCode.OK, result.Status.Code);
+            Assert.Equal(HttpStatusCode.OK, result.Code);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace Investing.HttpClients.Tests.BcsApi
             Assert.NotNull(result.Result);
             Assert.NotEmpty(result.Result.OpenValues);
             Assert.Equal(result.Result.OpenValues.Count, result.Result.GetQuotations().Count());
-            Assert.Equal(HttpStatusCode.OK, result.Status.Code);
+            Assert.Equal(HttpStatusCode.OK, result.Code);
         }
     }
 }

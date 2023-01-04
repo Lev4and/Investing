@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resource\Bcs\RequestModels\" />
+    <Folder Include="Resource\Bcs\ResponseModels\" />
+    <Folder Include="Resource\Import\ResponseModels\" />
+  </ItemGroup>
+
 </Project>

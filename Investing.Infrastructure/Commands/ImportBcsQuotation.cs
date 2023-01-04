@@ -1,26 +1,25 @@
 ﻿using FluentValidation;
+using Investing.Core.Abstracts;
 using Investing.Core.Domain.Cqrs;
 using Investing.EntityFramework.Abstracts;
-using Investing.EntityFramework.Entities;
-using Investing.Infrastructure.Factories;
 using Investing.HttpClients.BcsApi.ResponseModels;
+using Investing.HttpClients.Resource.Import.RequestModels;
+using Investing.Infrastructure.Builders;
 using MediatR;
+using DomainEntities = Investing.Core.Domain.Entities;
+using EntityFrameworkEntities = Investing.EntityFramework.Entities;
 
 namespace Investing.Infrastructure.Commands
 {
-    public class ImportBcsQuotation : ICommand<Guid>
+    public class ImportBcsQuotation : ICommand<DomainEntities.Product>
     {
-        public Partner Partner { get; }
+        public ImportBcsQuotationModel Model { get; }
 
-        public HistoryQuotations HistoryQuotations { get; }
-
-        public ImportBcsQuotation(Partner partner, HistoryQuotations historyQuotations)
+        public ImportBcsQuotation(ImportBcsQuotationModel model)
         {
-            if (partner == null) throw new ArgumentNullException(nameof(partner));
-            if (historyQuotations == null) throw new ArgumentNullException(nameof(historyQuotations));
+            if (model == null) throw new ArgumentNullException(nameof(model));
 
-            Partner = partner;
-            HistoryQuotations = historyQuotations;
+            Model = model;
         }
 
         internal class Validator : AbstractValidator<ImportBcsQuotation>
@@ -31,29 +30,34 @@ namespace Investing.Infrastructure.Commands
             }
         }
 
-        internal class Handler : IRequestHandler<ImportBcsQuotation, ResultModel<Guid>>
+        internal class Handler : IRequestHandler<ImportBcsQuotation, DomainEntities.Product>
         {
-            private readonly IImporterVisitor _importer;
+            private readonly IImporterVisitor _visitor;
+            private readonly IFactory<EntityFrameworkEntities.Product, DomainEntities.Product> _productFactory;
+            private readonly IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> _productDbFactory;
+            private readonly IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice> _productPriceDbFactory;
 
-            public Handler(IImporterVisitor importer)
+            public Handler(IImporterVisitor visitor,
+                IFactory<EntityFrameworkEntities.Product, DomainEntities.Product> productFactory,
+                IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> productDbFactory,
+                IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice> productPriceDbFactory)
             {
-                _importer = importer;
+                _visitor = visitor;
+                _productFactory = productFactory;
+                _productDbFactory = productDbFactory;
+                _productPriceDbFactory = productPriceDbFactory;
             }
 
-            public async Task<ResultModel<Guid>> Handle(ImportBcsQuotation request, CancellationToken cancellationToken)
+            public async Task<DomainEntities.Product> Handle(ImportBcsQuotation request, 
+                CancellationToken cancellationToken)
             {
-                var product = new ProductFactory().Create(request.Partner);
+                var product = new ProductBuilder(request.Model.Partner, _productDbFactory, _productPriceDbFactory)
+                    .WithQuotations(request.Model.HistoryQuotations)
+                    .Buid();
 
-                await _importer.Visit(product);
+                await _visitor.Visit(product);
 
-                var factory = new ProductPriceFactory(product.Id);
-
-                foreach(var quotation in request.HistoryQuotations)
-                {
-                    await _importer.Visit(factory.Create(quotation));
-                }
-
-                return new ResultModel<Guid>(product.Id);
+                return _productFactory.Create(product);
             }
         }
     }

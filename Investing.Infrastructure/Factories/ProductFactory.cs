@@ -1,29 +1,38 @@
-﻿using Investing.EntityFramework.Abstracts;
-using Investing.EntityFramework.Entities;
-using Investing.HttpClients.BcsApi.ResponseModels;
+﻿using Investing.Core.Abstracts;
+using DomainEntities = Investing.Core.Domain.Entities;
+using EntityFrameworkEntities = Investing.EntityFramework.Entities;
 
 namespace Investing.Infrastructure.Factories
 {
-    public class ProductFactory : IEntityFrameworkFactory<Partner, Product>
+    public class ProductFactory : IFactory<EntityFrameworkEntities.Product, DomainEntities.Product>
     {
-        public Product Create(Partner input)
+        public DomainEntities.Product Create(EntityFrameworkEntities.Product input)
         {
-            if (input == null) throw new ArgumentNullException(nameof(input));
+            var asset = input.Asset != null 
+                ? new DomainEntities.Asset(input.Asset.Id, input.Asset.Title) 
+                : null;
 
-            return new Product
-            {
-                Issuer = input.Issuer,
-                ClassCode = input.ClassCode,
-                SecurCode = input.SecurCode,
-                Capitalization = (decimal?)input.Capitalization,
-                Asset = new Asset { Title = input.BaseAsset },
-                Currency = new Currency { Title = input.Currency },
-                Sector = new EntityFramework.Entities.Sector { Title = input.Sector.Name },
-                Logo = !string.IsNullOrEmpty(input.CompanyLogo) ? new ProductLogo { Value = input.CompanyLogo } : null,
-                BondType = !string.IsNullOrEmpty(input.BondType) ? new BondType { Title = input.BondType } : null,
-                Exchange = new Exchange { Title = input.Exchange },
-                Portfolio = new Portfolio { Title = input.PortfolioName }
-            };
+            var sector = new DomainEntities.Sector(input.Sector.Id, input.Sector.Title);
+            var currency = new DomainEntities.Currency(input.Currency.Id, input.Currency.Title);
+            var exchange = new DomainEntities.Exchange(input.Exchange.Id, input.Exchange.Title);
+
+            var logo = input.Logo != null 
+                ? new DomainEntities.ProductLogo(input.Logo.Value) 
+                : null;
+
+            var bondType = input.BondType != null 
+                ? new DomainEntities.BondType(input.BondType.Id, input.BondType.Title) 
+                : null;
+
+            var portfolio = new DomainEntities.Portfolio(input.Portfolio.Id, input.Portfolio.Title);
+
+            var prices = input.Prices != null
+                ? new DomainEntities.ProductPrice(input.Prices.Select(price => new DomainEntities.Ohlc(price.Low,
+                    price.Open, price.High, price.Close, price.Volume, price.ClosedAt)))
+                : new DomainEntities.ProductPrice(new List<DomainEntities.Ohlc>());
+
+            return new DomainEntities.Product(input.Id, input.Issuer, input.ClassCode, input.SecurCode,
+                input.Capitalization, asset, sector, currency, exchange, logo, bondType, portfolio, prices);
         }
     }
 }

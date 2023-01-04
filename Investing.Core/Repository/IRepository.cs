@@ -11,7 +11,7 @@ namespace Investing.Core.Repository
         Task<TEntity?> FindByIdAsync<TEntity>(Guid id) where TEntity : EntityBase, IAggregateRoot, 
             IEqualSpecification<TEntity>;
 
-        Task<TEntity?> FindUniqueByExpressionAsync<TEntity>(IEqualSpecification<TEntity> specification) where TEntity : 
+        Task<TEntity?> FindByExpressionAsync<TEntity>(IEqualSpecification<TEntity> specification) where TEntity : 
             EntityBase, IAggregateRoot, IEqualSpecification<TEntity>;
 
         Task<TEntity?> FindOneAsync<TEntity>(ISpecification<TEntity> specification) where TEntity : EntityBase, 

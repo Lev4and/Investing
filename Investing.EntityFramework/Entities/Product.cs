@@ -13,7 +13,7 @@ namespace Investing.EntityFramework.Entities
     [Index(nameof(Capitalization))]
     public class Product : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<Product>
     {
-        public Guid AssetId { get; set; }
+        public Guid? AssetId { get; set; }
 
         public Guid SectorId { get; set; }
 

@@ -134,7 +134,7 @@ namespace Investing.EntityFramework.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid>("AssetId")
+                    b.Property<Guid?>("AssetId")
                         .HasColumnType("uuid")
                         .HasColumnName("asset_id");
 
@@ -567,8 +567,6 @@ namespace Investing.EntityFramework.Migrations
                     b.HasOne("Investing.EntityFramework.Entities.Asset", "Asset")
                         .WithMany("Products")
                         .HasForeignKey("AssetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("fk_products_assets_asset_id");
 
                     b.HasOne("Investing.EntityFramework.Entities.BondType", "BondType")

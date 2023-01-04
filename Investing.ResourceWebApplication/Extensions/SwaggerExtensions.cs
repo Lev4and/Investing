@@ -12,6 +12,7 @@ namespace Investing.ResourceWebApplication.Extensions
                 options.CustomSchemaIds(type => type.ToString());
                 options.AddServers();
             });
+            services.AddSwaggerGenNewtonsoftSupport();
         }
 
         private static void AddServers(this SwaggerGenOptions options)

@@ -1,8 +1,10 @@
-﻿using Investing.Infrastructure.Commands;
+﻿using Investing.HttpClients.Resource.Import.RequestModels;
+using Investing.Infrastructure.Commands;
 using Investing.ResourceWebApplication.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Investing.ResourceWebApplication.Areas.Import.Controllers
 {
@@ -20,11 +22,11 @@ namespace Investing.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ImportQuotation([FromBody] ImportBcsQuotation command)
+        public async Task<IActionResult> ImportQuotation([FromBody][Required] ImportBcsQuotationModel model)
         {
-            if (command == null) return BadRequest($"The {nameof(command)} should be not null.");
+            if (model == null) return BadRequest($"The {nameof(model)} should be not null.");
 
-            return Ok(await _mediator.Send(command));
+            return Ok(await _mediator.Send(new ImportBcsQuotation(model)));
         }
     }
 }

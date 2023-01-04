@@ -17,7 +17,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (asset == null) throw new ArgumentNullException(nameof(asset));
 
-            asset = await _repository.TryImportAsync(asset);
+            asset.Id = (await _repository.TryImportAsync(asset)).Id;
 
             return asset;
         }
@@ -26,7 +26,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (bondType == null) throw new ArgumentNullException(nameof(bondType));
 
-            bondType = await _repository.TryImportAsync(bondType);
+            bondType.Id = (await _repository.TryImportAsync(bondType)).Id;
 
             return bondType;
         }
@@ -35,7 +35,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (currency == null) throw new ArgumentNullException(nameof(currency));
 
-            currency = await _repository.TryImportAsync(currency);
+            currency.Id = (await _repository.TryImportAsync(currency)).Id;
 
             return currency;
         }
@@ -44,7 +44,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (exchange == null) throw new ArgumentNullException(nameof(exchange));
 
-            exchange = await _repository.TryImportAsync(exchange);
+            exchange.Id = (await _repository.TryImportAsync(exchange)).Id;
 
             return exchange;
         }
@@ -53,7 +53,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (portfolio == null) throw new ArgumentNullException(nameof(portfolio));
 
-            portfolio = await _repository.TryImportAsync(portfolio);
+            portfolio.Id = (await _repository.TryImportAsync(portfolio)).Id;
 
             return portfolio;
         }
@@ -92,13 +92,21 @@ namespace Investing.EntityFramework.Visitors
                 product.PortfolioId = (await Visit(product.Portfolio)).Id;
             }
 
-            await _repository.TryImportAsync(product);
+            product.Id = (await _repository.TryImportAsync(product)).Id;
 
             if (product.Logo != null)
             {
                 product.Logo.ProductId = product.Id;
+                product.Logo.Id = (await Visit(product.Logo)).Id;
+            }
 
-                await Visit(product.Logo);
+            if (product.Prices != null)
+            {
+                foreach (var price in product.Prices)
+                {
+                    price.ProductId = product.Id;
+                    price.Id = (await Visit(price)).Id;
+                }
             }
 
             return product;
@@ -108,7 +116,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (productLogo == null) throw new ArgumentNullException(nameof(productLogo));
 
-            productLogo = await _repository.TryImportAsync(productLogo);
+            productLogo.Id = (await _repository.TryImportAsync(productLogo)).Id;
 
             return productLogo;
         }
@@ -117,7 +125,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (productPrice == null) throw new ArgumentNullException(nameof(productPrice));
 
-            productPrice = await _repository.TryImportAsync(productPrice);
+            productPrice.Id = (await _repository.TryImportAsync(productPrice)).Id;
 
             return productPrice;
         }
@@ -126,7 +134,7 @@ namespace Investing.EntityFramework.Visitors
         {
             if (sector == null) throw new ArgumentNullException(nameof(sector));
 
-            sector = await _repository.TryImportAsync(sector);
+            sector.Id = (await _repository.TryImportAsync(sector)).Id;
 
             return sector;
         }

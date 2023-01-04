@@ -4,31 +4,30 @@ namespace Investing.HttpClients.Core.ResponseModels
 {
     public class ResponseModel<T>
     {
+        public bool? IsError { get; }
+
+        public string Message { get; }
+
+        public HttpStatusCode? Code { get; }
+
         public T? Result { get; }
 
-        public ResponseStatus Status { get; }
+        public Exception? ResponseException { get; }
 
-        public ResponseModel(T? result, ResponseStatus status)
+        public ResponseModel(T? result, HttpStatusCode? code, string message, bool? isError = false, 
+            Exception? exception = null)
         {
-            if (status == null) throw new ArgumentNullException(nameof(status));
+            if (string.IsNullOrEmpty(message)) throw new ArgumentNullException(nameof(message));
 
+            IsError = isError;
+            Message = message;
+            Code = code;
             Result = result;
-            Status = status;
+            ResponseException = exception;
         }
 
-        public ResponseModel(T? result, string message, HttpStatusCode? code) : this(result, 
-            new ResponseStatus(message, code))
-        {
-
-        }
-
-        public ResponseModel(T? result, string message, HttpResponseMessage response) : this(result, 
-            new ResponseStatus(message, response))
-        {
-
-        }
-
-        public ResponseModel(T? result, HttpResponseMessage response) : this(result, new ResponseStatus(response))
+        public ResponseModel(T? result, HttpStatusCode? code, bool? isError = false,
+            Exception? exception = null) : this(result, code, code?.ToString() ?? "Unknown", isError, exception)
         {
 
         }
