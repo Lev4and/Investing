@@ -4,6 +4,7 @@ using Investing.ResourceWebApplication.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Investing.ResourceWebApplication.Areas.Import.Controllers
 {
@@ -21,7 +22,7 @@ namespace Investing.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ImportAsync([FromBody] Partner partner)
+        public async Task<IActionResult> ImportAsync([FromBody][Required] PartnerBase partner)
         {
             if (partner == null) return BadRequest($"The {nameof(partner)} should be not null.");
 

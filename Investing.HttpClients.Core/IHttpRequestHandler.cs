@@ -2,10 +2,12 @@
 
 namespace Investing.HttpClients.Core
 {
-    public interface IHttpRequestHandler<T>
+    public interface IHttpRequestHandler
     {
+        IHttpResponseMaper Maper { get; }
+
         IHttpResponseReader Reader { get; }
 
-        Task<ResponseModel<T>> HandleAsync(Func<Task<HttpResponseMessage>> request);
+        Task<ResponseModel<TResult>> HandleAsync<TResult>(Func<Task<HttpResponseMessage>> request);
     }
 }

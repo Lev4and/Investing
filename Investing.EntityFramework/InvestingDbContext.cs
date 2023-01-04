@@ -36,7 +36,7 @@ namespace Investing.EntityFramework
             base.OnModelCreating(builder);
 
             builder.Entity<Asset>().OneToMany(entity => entity.Products, entity => entity.Asset, 
-                entity => entity.AssetId);
+                entity => entity.AssetId, false);
 
             builder.Entity<BondType>().OneToMany(entity => entity.Products, entity => entity.BondType, 
                 entity => entity.BondTypeId, false);

@@ -8,19 +8,19 @@ using System.Linq.Expressions;
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(ProductId))]
-    public class ProductLogo : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<ProductLogo>
+    public class ProductLogo : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<ProductLogo>
     {
         public Guid ProductId { get; set; }
 
         public string Value { get; set; }
 
-        public Expression<Func<ProductLogo, bool>> Unique => (item) => item.ProductId == ProductId;
+        public Expression<Func<ProductLogo, bool>> IsEqual => (item) => item.ProductId == ProductId;
 
         public virtual Product? Product { get; set; }
 
-        public override async Task ImportAsync(IImporterVisitor visitor)
+        public override async Task Accept(IImporterVisitor visitor)
         {
-            await visitor.ImportAsync(this);
+            await visitor.Visit(this);
         }
     }
 }

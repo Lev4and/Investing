@@ -8,8 +8,12 @@ using System.Linq.Expressions;
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(ProductId))]
+    [Index(nameof(Open))]
+    [Index(nameof(High))]
+    [Index(nameof(Low))]
+    [Index(nameof(Volume))]
     [Index(nameof(ClosedAt))]
-    public class ProductPrice : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<ProductPrice>
+    public class ProductPrice : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<ProductPrice>
     {
         public Guid ProductId { get; set; }
 
@@ -25,14 +29,14 @@ namespace Investing.EntityFramework.Entities
 
         public DateTime ClosedAt { get; set; }
 
-        public Expression<Func<ProductPrice, bool>> Unique => (item) => item.ProductId == ProductId && 
+        public Expression<Func<ProductPrice, bool>> IsEqual => (item) => item.ProductId == ProductId && 
             item.ClosedAt == ClosedAt;
 
         public virtual Product? Product { get; set; }
 
-        public override async Task ImportAsync(IImporterVisitor visitor)
+        public override async Task Accept(IImporterVisitor visitor)
         {
-            await visitor.ImportAsync(this);
+            await visitor.Visit(this);
         }
     }
 }

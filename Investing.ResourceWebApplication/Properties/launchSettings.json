@@ -11,7 +11,8 @@
         "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
         "ASPNETCORE_POSTGRES_DB_USER": "postgres",
         "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
-        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq"
+        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq",
+        "ASPNETCORE_BACKEND_PATH_URL": "resource/test"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5188"
@@ -27,7 +28,8 @@
         "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
         "ASPNETCORE_POSTGRES_DB_USER": "postgres",
         "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
-        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq"
+        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq",
+        "ASPNETCORE_BACKEND_PATH_URL": "resource/test"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7056;http://localhost:5188"
@@ -43,7 +45,8 @@
         "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
         "ASPNETCORE_POSTGRES_DB_USER": "postgres",
         "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
-        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq"
+        "ASPNETCORE_SEQ_SERVER": "http://lev4and.ru/resorce/test/seq",
+        "ASPNETCORE_BACKEND_PATH_URL": "resource/test"
       }
     },
     "Docker": {
@@ -58,7 +61,8 @@
         "ASPNETCORE_POSTGRES_DB_NAME": "InvestingTest",
         "ASPNETCORE_POSTGRES_DB_USER": "postgres",
         "ASPNETCORE_POSTGRES_DB_PASSWORD": "sa",
-        "ASPNETCORE_SEQ_SERVER": "http://localhost/resorce/test/seq"
+        "ASPNETCORE_SEQ_SERVER": "http://localhost/resorce/test/seq",
+        "ASPNETCORE_BACKEND_PATH_URL": "resource/test"
       }
     }
   },

@@ -7,6 +7,8 @@ namespace Investing.HttpClients.Core
 {
     public class BaseHttpClient : HttpClient
     {
+        protected virtual IHttpRequestHandler HttpRequestHandler => new BaseHttpRequestHandler();
+
         public BaseHttpClient() : base(new HttpClientHandlerBuilder().WithAllowAutoRedirect()
             .WithAutomaticDecompression().UseCertificateCustomValidation().UseSslProtocols().Build())
         {
@@ -21,36 +23,38 @@ namespace Investing.HttpClients.Core
             BaseAddress = new Uri(uri);
         }
 
-        public async Task<ResponseModel<T>> GetAsync<T>(string uri, CancellationToken cancellationToken = default)
-        {
-            if (uri == null) throw new ArgumentNullException(nameof(uri));
-
-            return await new JsonHttpRequestHandler<T>().HandleAsync(() => GetAsync(uri, cancellationToken));
-        }
-
-        public async Task<ResponseModel<T>> PostAsync<T>(string uri, object content, 
+        public async Task<ResponseModel<TResult>> GetAsync<TResult>(string uri, 
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-            return await new JsonHttpRequestHandler<T>().HandleAsync(() => PostAsync(uri, content.ToStringContent(), 
-                cancellationToken));
+            return await HttpRequestHandler.HandleAsync<TResult>(() => GetAsync(uri, cancellationToken));
         }
 
-        public async Task<ResponseModel<T>> PutAsync<T>(string uri, object content, 
+        public async Task<ResponseModel<TResult>> PostAsync<TResult>(string uri, object content, 
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-            return await new JsonHttpRequestHandler<T>().HandleAsync(() => PutAsync(uri, content.ToStringContent(), 
+            return await HttpRequestHandler.HandleAsync<TResult>(() => PostAsync(uri, content.ToStringContent(), 
                 cancellationToken));
         }
 
-        public async Task<ResponseModel<T>> DeleteAsync<T>(string uri, CancellationToken cancellationToken = default)
+        public async Task<ResponseModel<TResult>> PutAsync<TResult>(string uri, object content, 
+            CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-            return await new JsonHttpRequestHandler<T>().HandleAsync(() => DeleteAsync(uri, cancellationToken));
+            return await HttpRequestHandler.HandleAsync<TResult>(() => PutAsync(uri, content.ToStringContent(), 
+                cancellationToken));
+        }
+
+        public async Task<ResponseModel<TResult>> DeleteAsync<TResult>(string uri, 
+            CancellationToken cancellationToken = default)
+        {
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+
+            return await HttpRequestHandler.HandleAsync<TResult>(() => DeleteAsync(uri, cancellationToken));
         }
 
         public void UseHeaders(Dictionary<string, string> headers)

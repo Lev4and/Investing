@@ -1,25 +1,26 @@
-﻿using Investing.EntityFramework.Entities;
+﻿using Investing.Core.Abstracts;
+using Investing.EntityFramework.Entities;
 
 namespace Investing.EntityFramework.Abstracts
 {
     public interface IImporterVisitor
     {
-        Task<Asset> ImportAsync(Asset asset);
+        Task<Asset> Visit(Asset asset);
 
-        Task<BondType> ImportAsync(BondType bondType);
+        Task<BondType> Visit(BondType bondType);
 
-        Task<Currency> ImportAsync(Currency currency);
+        Task<Currency> Visit(Currency currency);
 
-        Task<Exchange> ImportAsync(Exchange exchange);
+        Task<Exchange> Visit(Exchange exchange);
 
-        Task<Portfolio> ImportAsync(Portfolio portfolio);
+        Task<Portfolio> Visit(Portfolio portfolio);
 
-        Task<Product> ImportAsync(Product product);
+        Task<Product> Visit(Product product);
 
-        Task<ProductLogo> ImportAsync(ProductLogo productLogo);
+        Task<ProductLogo> Visit(ProductLogo productLogo);
 
-        Task<ProductPrice> ImportAsync(ProductPrice productPrice);
+        Task<ProductPrice> Visit(ProductPrice productPrice);
 
-        Task<Sector> ImportAsync(Sector sector);
+        Task<Sector> Visit(Sector sector);
     }
 }

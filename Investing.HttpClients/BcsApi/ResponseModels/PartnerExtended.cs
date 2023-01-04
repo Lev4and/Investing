@@ -2,7 +2,7 @@
 
 namespace Investing.HttpClients.BcsApi.ResponseModels
 {
-    public class Partner
+    public class PartnerExtended : PartnerBase
     {
         [JsonProperty("qualification")]
         public bool? Qualification { get; set; }
@@ -31,9 +31,6 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
         [JsonProperty("price_change")]
         public double? PriceChange { get; set; }
 
-        [JsonProperty("capitalization")]
-        public double? Capitalization { get; set; }
-
         [JsonProperty("trading_volumes")]
         public double? TradingVolumes { get; set; }
 
@@ -43,44 +40,11 @@ namespace Investing.HttpClients.BcsApi.ResponseModels
         [JsonProperty("price_change_percent")]
         public double? PriceChangePercent { get; set; }
 
-        [JsonProperty("issuer")]
-        public string Issuer { get; set; }
-
-        [JsonProperty("exchange")]
-        public string Exchange { get; set; }
-
-        [JsonProperty("currency")]
-        public string Currency { get; set; }
-
-        [JsonProperty("secur_code")]
-        public string SecurCode { get; set; }
-
-        [JsonProperty("class_code")]
-        public string ClassCode { get; set; }
-
-        [JsonProperty("base_asset")]
-        public string BaseAsset { get; set; }
-
-        [JsonProperty("bond_type")]
-        public string? BondType { get; set; }
-
-        [JsonProperty("company_logo")]
-        public string? CompanyLogo { get; set; }
-
-        [JsonProperty("portfolio_name")]
-        public string PortfolioName { get; set; }
-
-        [JsonProperty("relative_reference")]
-        public string RelativeReference { get; set; }
-
         [JsonProperty("last_price_time")]
         public DateTime? LastPriceTime { get; set; }
 
         [JsonProperty("date_time_redemption_format")]
         public DateTime? DateTimeRedemptionFormat { get; set; }
-
-        [JsonProperty("sector")]
-        public Sector Sector { get; set; }
 
         [JsonProperty("graph_data")]
         public List<GraphItem> GraphData { get; set; }

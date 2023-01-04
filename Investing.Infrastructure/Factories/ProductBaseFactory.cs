@@ -2,11 +2,11 @@
 using Investing.EntityFramework.Entities;
 using Investing.HttpClients.BcsApi.ResponseModels;
 
-namespace Investing.EntityFramework.Infrastructure.Factories
+namespace Investing.Infrastructure.Factories
 {
-    public class ProductFactory : IEntityFrameworkFactory<Partner, Product>
+    public class ProductBaseFactory : IEntityFrameworkFactory<PartnerBase, Product>
     {
-        public Product Create(Partner input)
+        public Product Create(PartnerBase input)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
 
@@ -16,9 +16,9 @@ namespace Investing.EntityFramework.Infrastructure.Factories
                 ClassCode = input.ClassCode,
                 SecurCode = input.SecurCode,
                 Capitalization = (decimal?)input.Capitalization,
-                Asset = new Asset { Title = input.BaseAsset },
+                Asset = !string.IsNullOrEmpty(input.BaseAsset) ? new Asset { Title = input.BaseAsset } : null,
                 Currency = new Currency { Title = input.Currency },
-                Sector = new Entities.Sector { Title = input.Sector.Name },
+                Sector = new EntityFramework.Entities.Sector { Title = input.Sector.Name },
                 Logo = !string.IsNullOrEmpty(input.CompanyLogo) ? new ProductLogo { Value = input.CompanyLogo } : null,
                 BondType = !string.IsNullOrEmpty(input.BondType) ? new BondType { Title = input.BondType } : null,
                 Exchange = new Exchange { Title = input.Exchange },

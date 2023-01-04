@@ -1,17 +1,19 @@
 ﻿using FluentValidation;
+using Investing.Core.Abstracts;
 using Investing.Core.Domain.Cqrs;
 using Investing.EntityFramework.Abstracts;
-using Investing.EntityFramework.Infrastructure.Factories;
 using Investing.HttpClients.BcsApi.ResponseModels;
 using MediatR;
+using DomainEntities = Investing.Core.Domain.Entities;
+using EntityFrameworkEntities = Investing.EntityFramework.Entities;
 
 namespace Investing.Infrastructure.Commands
 {
-    public class ImportBcsPartner : ICommand<Guid>
+    public class ImportBcsPartner : ICommand<DomainEntities.Product>
     {
-        public Partner Partner { get; }
+        public PartnerBase Partner { get; }
 
-        public ImportBcsPartner(Partner partner)
+        public ImportBcsPartner(PartnerBase partner)
         {
             if (partner == null) throw new ArgumentNullException(nameof(partner));
 
@@ -26,22 +28,29 @@ namespace Investing.Infrastructure.Commands
             }
         }
 
-        internal class Handler : IRequestHandler<ImportBcsPartner, ResultModel<Guid>>
+        internal class Handler : IRequestHandler<ImportBcsPartner, DomainEntities.Product>
         {
-            private readonly IImporterVisitor _importer;
+            private readonly IImporterVisitor _visitor;
+            private readonly IFactory<EntityFrameworkEntities.Product, DomainEntities.Product> _productFactory;
+            private readonly IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> _productDbFactory;
 
-            public Handler(IImporterVisitor importer)
+            public Handler(IImporterVisitor visitor, 
+                IFactory<EntityFrameworkEntities.Product, DomainEntities.Product> productFactory,
+                IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> productDbFactory)
             {
-                _importer = importer;
+                _visitor = visitor;
+                _productFactory = productFactory;
+                _productDbFactory = productDbFactory;
             }
 
-            public async Task<ResultModel<Guid>> Handle(ImportBcsPartner request, CancellationToken cancellationToken)
+            public async Task<DomainEntities.Product> Handle(ImportBcsPartner request, 
+                CancellationToken cancellationToken)
             {
-                var product = new ProductFactory().Create(request.Partner);
+                var product = _productDbFactory.Create(request.Partner);
 
-                await product.ImportAsync(_importer);
+                await product.Accept(_visitor);
 
-                return new ResultModel<Guid>(product.Id);
+                return _productFactory.Create(product);
             }
         }
     }

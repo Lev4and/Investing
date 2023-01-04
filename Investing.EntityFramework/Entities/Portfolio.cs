@@ -8,17 +8,17 @@ using System.Linq.Expressions;
 namespace Investing.EntityFramework.Entities
 {
     [Index(nameof(Title))]
-    public class Portfolio : EntityFrameworkEntityBase, IAggregateRoot, IUniqueSpecification<Portfolio>
+    public class Portfolio : EntityFrameworkEntityBase, IAggregateRoot, IEqualSpecification<Portfolio>
     {
         public string Title { get; set; }
 
-        public Expression<Func<Portfolio, bool>> Unique => (item) => item.Title == Title;
+        public Expression<Func<Portfolio, bool>> IsEqual => (item) => item.Title == Title;
 
         public virtual ICollection<Product>? Products { get; set; }
 
-        public override async Task ImportAsync(IImporterVisitor visitor)
+        public override async Task Accept(IImporterVisitor visitor)
         {
-            await visitor.ImportAsync(this);
+            await visitor.Visit(this);
         }
     }
 }
