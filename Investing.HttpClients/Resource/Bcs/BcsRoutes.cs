@@ -12,5 +12,9 @@
 
         public const string BcsQuotationsQuery = "{SecurCode}/{ClassCode}?from={From}&to={To}&" +
             "resolution={Resolution}";
+
+        public const string BcsDividendsPath = "dividends";
+
+        public const string BcsDividendsHistoryQuery = "{SecurCode}";
     }
 }

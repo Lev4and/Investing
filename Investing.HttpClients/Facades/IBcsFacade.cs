@@ -7,6 +7,8 @@ namespace Investing.HttpClients.Facades
     {
         Task<PartnerQuotations?> GetPartnerQuotationsAsync(int offset);
 
+        Task<HistoryDividends?> GetHistoryDividendsAsync(string securCode);
+
         Task<HistoryQuotations?> GetHistoryQuotationsAsync(GetHistoryQuotationsModel model);
     }
 }

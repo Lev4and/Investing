@@ -25,6 +25,18 @@ namespace Investing.HttpClients.Facades
             return result.Result;
         }
 
+        public async Task<HistoryDividends?> GetHistoryDividendsAsync(string securCode)
+        {
+            if (string.IsNullOrEmpty(securCode)) throw new ArgumentNullException(nameof(securCode));
+
+            var dividendsHtmlPage = await _httpContext.BcsExpress.QuotesCharts.GetDividendsHtmlPageAsync(securCode);
+            var isinCode = IsinCodeParser.Parse(dividendsHtmlPage) ?? "";
+
+            var result = await _httpContext.BcsApi.DividendsCalendar.GetHistoryDividendsAsync(isinCode);
+
+            return result.Result;
+        }
+
         public async Task<HistoryQuotations?> GetHistoryQuotationsAsync(GetHistoryQuotationsModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));

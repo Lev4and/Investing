@@ -16,5 +16,9 @@
 
         public const string UdfDataFeedHistoryQuotationsQuery = "history?symbol={SecurCode}&resolution={Resolution}&" +
             "classcode={ClassCode}&from={FromUnix}&to={ToUnix}";
+
+        public const string DividendsCalendarPath = "divcalendar/v1/";
+
+        public const string DividendsCalendarDividendQuery = "dividend/{IsinCode}";
     }
 }
