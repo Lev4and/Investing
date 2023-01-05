@@ -5,5 +5,7 @@
         IPartnerHttpClient Partner { get; }
 
         IUdfDataFeedHttpClient UdfDataFeed { get; }
+
+        IDividendsCalendarHttpClient DividendsCalendar { get; }
     }
 }

@@ -4,6 +4,8 @@
     {
         public IPartnersHttpClient Partners => new PartnersHttpClient();
 
+        public IDividendsHttpClient Dividends => new DividendsHttpClient();
+
         public IQuotationsHttpClient Quotations => new QuotationsHttpClient();
     }
 }

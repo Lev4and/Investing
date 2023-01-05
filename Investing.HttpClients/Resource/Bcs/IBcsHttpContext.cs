@@ -4,6 +4,8 @@
     {
         IPartnersHttpClient Partners { get; }
 
+        IDividendsHttpClient Dividends { get; }
+
         IQuotationsHttpClient Quotations { get; }
     }
 }

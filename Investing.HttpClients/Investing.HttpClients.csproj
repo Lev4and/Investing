@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resource\Bcs\RequestModels\" />
     <Folder Include="Resource\Bcs\ResponseModels\" />
     <Folder Include="Resource\Import\ResponseModels\" />
   </ItemGroup>

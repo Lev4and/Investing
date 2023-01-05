@@ -5,8 +5,8 @@ namespace Investing.HttpClients.Resource
 {
     public interface IResourceHttpContext
     {
-        IBcsHttpContext Bcs => new BcsHttpContext();
+        IBcsHttpContext Bcs { get; }
 
-        IImportHttpContext Import => new ImportHttpContext();
+        IImportHttpContext Import { get; }
     }
 }

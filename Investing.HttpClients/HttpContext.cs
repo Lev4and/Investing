@@ -1,5 +1,7 @@
 ﻿using Investing.HttpClients.Bcs;
 using Investing.HttpClients.BcsApi;
+using Investing.HttpClients.BcsExpress;
+using Investing.HttpClients.Resource;
 
 namespace Investing.HttpClients
 {
@@ -8,5 +10,9 @@ namespace Investing.HttpClients
         public IBcsHttpContext Bcs => new BcsHttpContext();
 
         public IBcsApiHttpContext BcsApi => new BcsApiHttpContext();
+
+        public IResourceHttpContext Resource => new ResourceHttpContext();
+
+        public IBcsExpressHttpContext BcsExpress => new BcsExpressHttpContext();
     }
 }
