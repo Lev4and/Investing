@@ -32,16 +32,18 @@ namespace Investing.Infrastructure.Commands
 
         internal class Handler : IRequestHandler<ImportBcsQuotation, DomainEntities.Product>
         {
+            private readonly IProductBuilder _builder;
             private readonly IImporterVisitor _visitor;
             private readonly IFactory<EntityFrameworkEntities.Product, DomainEntities.Product> _productFactory;
             private readonly IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> _productDbFactory;
             private readonly IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice> _productPriceDbFactory;
 
-            public Handler(IImporterVisitor visitor,
+            public Handler(IProductBuilder builder, IImporterVisitor visitor,
                 IFactory<EntityFrameworkEntities.Product, DomainEntities.Product> productFactory,
                 IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> productDbFactory,
                 IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice> productPriceDbFactory)
             {
+                _builder = builder;
                 _visitor = visitor;
                 _productFactory = productFactory;
                 _productDbFactory = productDbFactory;
@@ -51,9 +53,10 @@ namespace Investing.Infrastructure.Commands
             public async Task<DomainEntities.Product> Handle(ImportBcsQuotation request, 
                 CancellationToken cancellationToken)
             {
-                var product = new ProductBuilder(request.Model.Partner, _productDbFactory, _productPriceDbFactory)
-                    .WithQuotations(request.Model.HistoryQuotations)
-                    .Buid();
+                var product = _builder
+                    .WithPartner(request.Model.Partner, _productDbFactory)
+                    .WithQuotations(request.Model.HistoryQuotations, _productPriceDbFactory)
+                    .Build();
 
                 await _visitor.Visit(product);
 

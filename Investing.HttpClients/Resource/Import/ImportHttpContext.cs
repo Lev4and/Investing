@@ -4,6 +4,8 @@
     {
         public IProductHttpClient Product => new ProductHttpClient();
 
+        public IDividendHttpClient Dividend => new DividendHttpClient();
+
         public IQuotationHttpClient Quotation => new QuotationHttpClient();
     }
 }

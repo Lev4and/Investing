@@ -22,7 +22,7 @@ namespace Investing.ResourceWebApplication.Areas.Import.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ImportQuotation([FromBody][Required] ImportBcsQuotationModel model)
+        public async Task<IActionResult> ImportQuotationAsync([FromBody][Required] ImportBcsQuotationModel model)
         {
             if (model == null) return BadRequest($"The {nameof(model)} should be not null.");
 

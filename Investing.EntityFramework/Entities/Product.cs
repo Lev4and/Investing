@@ -52,6 +52,8 @@ namespace Investing.EntityFramework.Entities
 
         public virtual ICollection<ProductPrice>? Prices { get; set; }
 
+        public virtual ICollection<ProductDividend>? Dividends { get; set; }
+
         public override async Task Accept(IImporterVisitor visitor)
         {
             await visitor.Visit(this);

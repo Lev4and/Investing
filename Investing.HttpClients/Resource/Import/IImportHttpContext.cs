@@ -4,6 +4,8 @@
     {
         IProductHttpClient Product { get; }
 
+        IDividendHttpClient Dividend { get; }
+
         IQuotationHttpClient Quotation { get; }
     }
 }
