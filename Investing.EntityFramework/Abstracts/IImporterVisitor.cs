@@ -17,6 +17,8 @@ namespace Investing.EntityFramework.Abstracts
 
         Task<Product> Visit(Product product);
 
+        Task<ProductDividend> Visit(ProductDividend dividend);
+
         Task<ProductLogo> Visit(ProductLogo productLogo);
 
         Task<ProductPrice> Visit(ProductPrice productPrice);

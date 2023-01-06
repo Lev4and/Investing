@@ -1,34 +1,52 @@
 ﻿using Investing.EntityFramework.Abstracts;
 using Investing.HttpClients.BcsApi.ResponseModels;
-using EntityFrameworkEntities = Investing.EntityFramework.Entities;
+using Investing.EntityFramework.Entities;
 
 namespace Investing.Infrastructure.Builders
 {
-    public class ProductBuilder
+    public class ProductBuilder : IProductBuilder
     {
-        private readonly IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> _productFactory;
-        private readonly IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice> _productPriceFactory;
+        private Product _product;
 
-        private EntityFrameworkEntities.Product _product;
-
-        public ProductBuilder(PartnerBase partner, 
-            IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product> productFactory, 
-            IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice> productPriceFactory)
+        public ProductBuilder()
         {
-            _productFactory = productFactory;
-            _productPriceFactory = productPriceFactory;
-
-            _product = _productFactory.Create(partner);
+            _product = new Product();
         }
 
-        public ProductBuilder WithQuotations(HistoryQuotations quotations)
+        public IProductBuilder WithPartner(PartnerBase partner,
+            IEntityFrameworkFactory<PartnerBase, Product> factory)
         {
-            _product.Prices = quotations.Select(_productPriceFactory.Create).ToList();
+            if (partner == null) throw new ArgumentNullException(nameof(partner));
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+
+            _product = factory.Create(partner);
 
             return this;
         }
 
-        public EntityFrameworkEntities.Product Buid()
+        public IProductBuilder WithDividends(HistoryDividends dividends, 
+            IEntityFrameworkFactory<Dividend, ProductDividend> factory)
+        {
+            if (dividends == null) throw new ArgumentNullException(nameof(dividends));
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+
+            _product.Dividends = dividends.Dividends.Select(factory.Create).ToList();
+
+            return this;
+        }
+
+        public IProductBuilder WithQuotations(HistoryQuotations quotations,
+            IEntityFrameworkFactory<Quotation, ProductPrice> factory)
+        {
+            if (quotations == null) throw new ArgumentNullException(nameof(quotations));
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+
+            _product.Prices = quotations.Select(factory.Create).ToList();
+
+            return this;
+        }
+
+        public Product Build()
         {
             return _product;
         }

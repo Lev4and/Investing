@@ -20,6 +20,8 @@ namespace Investing.EntityFramework
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<ProductDividend> ProductDividends { get; set; }
+
         public DbSet<ProductLogo> ProductLogos { get; set; }
 
         public DbSet<ProductPrice> ProductPrices { get; set; }
@@ -51,6 +53,9 @@ namespace Investing.EntityFramework
                 entity => entity.PortfolioId);
 
             builder.Entity<Product>().OneToOne(entity => entity.Logo, entity => entity.Product,
+                entity => entity.ProductId);
+
+            builder.Entity<Product>().OneToMany(entity => entity.Dividends, entity => entity.Product,
                 entity => entity.ProductId);
 
             builder.Entity<Product>().OneToMany(entity => entity.Prices, entity => entity.Product,

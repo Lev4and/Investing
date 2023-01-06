@@ -4,6 +4,7 @@ using Investing.EntityFramework;
 using Investing.EntityFramework.Abstracts;
 using Investing.HttpClients;
 using Investing.HttpClients.BcsApi.ResponseModels;
+using Investing.Infrastructure.Builders;
 using Investing.Infrastructure.Factories;
 using Investing.Infrastructure.Pipelines;
 using MediatR;
@@ -20,8 +21,12 @@ namespace Investing.Infrastructure
             services.AddHttpClients();
             services.AddEntityFramework();
 
+            services.AddSingleton(typeof(IProductBuilder), typeof(ProductBuilder));
+
             services.AddSingleton(typeof(IEntityFrameworkFactory<PartnerBase, EntityFrameworkEntities.Product>), 
                 typeof(ProductBaseFactory));
+            services.AddSingleton(typeof(IEntityFrameworkFactory<Dividend, EntityFrameworkEntities.ProductDividend>),
+                typeof(ProductDividendFactory));
             services.AddSingleton(typeof(IEntityFrameworkFactory<Quotation, EntityFrameworkEntities.ProductPrice>),
                 typeof(ProductPriceFactory));
 

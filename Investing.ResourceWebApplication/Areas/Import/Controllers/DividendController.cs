@@ -1,4 +1,4 @@
-﻿using Investing.HttpClients.BcsApi.ResponseModels;
+﻿using Investing.HttpClients.Resource.Import.RequestModels;
 using Investing.Infrastructure.Commands;
 using Investing.ResourceWebApplication.Extensions;
 using MediatR;
@@ -10,23 +10,23 @@ namespace Investing.ResourceWebApplication.Areas.Import.Controllers
 {
     [ApiController]
     [Area("Import")]
-    [Route("api/import/product")]
+    [Route("api/import/dividend")]
     [EnableCors(CorsExtensions.CorsPolicyName)]
-    public class ProductController : ControllerBase
+    public class DividendController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator)
+        public DividendController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> ImportPartnerAsync([FromBody][Required] PartnerBase partner)
+        public async Task<IActionResult> ImportDividendsAsync([FromBody][Required] ImportBcsDividendsModel model)
         {
-            if (partner == null) return BadRequest($"The {nameof(partner)} should be not null.");
+            if (model == null) return BadRequest($"The {nameof(model)} should be not null.");
 
-            return Ok(await _mediator.Send(new ImportBcsPartner(partner)));
+            return Ok(await _mediator.Send(new ImportBcsDividend(model)));
         }
     }
 }

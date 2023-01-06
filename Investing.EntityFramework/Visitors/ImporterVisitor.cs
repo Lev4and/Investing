@@ -100,6 +100,15 @@ namespace Investing.EntityFramework.Visitors
                 product.Logo.Id = (await Visit(product.Logo)).Id;
             }
 
+            if (product.Dividends != null)
+            {
+                foreach (var dividend in product.Dividends)
+                {
+                    dividend.ProductId = product.Id;
+                    dividend.Id = (await Visit(dividend)).Id;
+                }
+            }
+
             if (product.Prices != null)
             {
                 foreach (var price in product.Prices)
@@ -110,6 +119,15 @@ namespace Investing.EntityFramework.Visitors
             }
 
             return product;
+        }
+
+        public async Task<ProductDividend> Visit(ProductDividend dividend)
+        {
+            if (dividend == null) throw new ArgumentNullException(nameof(dividend));
+
+            dividend.Id = (await _repository.TryImportAsync(dividend)).Id;
+
+            return dividend;
         }
 
         public async Task<ProductLogo> Visit(ProductLogo productLogo)
